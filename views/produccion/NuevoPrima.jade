@@ -1,0 +1,43 @@
+extends ../templates/default
+
+
+block content
+  br
+  br
+  div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
+    div(class=["ten", "wide", "column"])
+      
+      h2(class=['ui', 'header', 'blue', "dividing"])= "Nueva Materia Prima"
+      div(class=['ui','field'])
+        a(class="btn btn-primary", href="http://localhost:3000/users/prima" role="button")='Regresar'
+        a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Menu Principal'
+      br
+      br
+      div(class='form-nuevaprima')
+        form(class=['ui','form'] action='http://localhost:3000/users/prima/crearprima' method='post')
+          div(class=['ui','two','fields'] )
+                div(class=['ui','field'])
+                  label(for='codmaterial')='Codigo'
+                  input(type='text' name='codmaterial' placeholder='Codigo' maxlength='20')
+                div(class=['ui','field'])
+                  label(for='nombre')='Nombre'
+                  input(type='text' name='nombre' placeholder='Nombre' maxlength='30')
+          div(class=['ui','two','fields'] )
+                div(class=['ui','field'])
+                  label(for='color')='Color'
+                  input(type='text' name='color' placeholder='Color' maxlength='30')
+                div(class=['ui','field'])
+                  label(for='metraje')='Metraje'
+                  input(type='text' name='metraje' placeholder='Metraje' maxlength='20') 
+          div(class=['ui','field'])
+            label(for='descripcion')='Descripcion'
+            input(type='text' name='descripcion' placeholder='Descripcion' maxlength='50')
+          button(class=['ui','button','submit','blue'])= 'Crear' 
+          div(class=['ui','message','error'])
+      if info != undefined
+        div(class=['ui','message','success'])
+          i(class=['close','icon'])
+          div(class=['header'])= 'Materia Prima Registrado'
+          p= info
+
+    script(src='/javascripts/validacionPrima.js') 

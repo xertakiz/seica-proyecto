@@ -1,0 +1,39 @@
+extends ../templates/default
+
+
+block content
+  br
+  br
+  div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
+    div(class=["sixteen", "wide", "column"])
+      h2(class=['ui', 'header', 'blue', "dividing"])= "Listado de Clientes"
+      div(class=['ui','field'])
+        a(class="btn btn-primary" href="http://localhost:3000/users/clientes/nuevo" role="button")='Crear Cliente'
+        a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Regresar'
+
+      
+      table(class=['ui','table', 'celled'] id='tbl-cliente')
+        thead
+          tr
+            th= 'Rif o Cedula'
+            th= 'Razon Social o Nombre'
+            th= 'Ciudad'
+            th= 'Estado'
+            th= 'Telefono'
+            th= 'Acciones'
+        tbody
+          each cliente in clientes
+            tr
+              td(id='codcliente')= cliente.codcliente
+              td= cliente.nomcliente
+              td= cliente.ciucliente
+              td= cliente.estcliente
+              td= cliente.telefono
+              td
+                a(class=['ui button basic icon'] href='#' data-inverted=''
+                data-tooltip='Eliminar' data-position='top center' id='btn-eliminar')
+                  i(class=['trash icon'])
+                a(class=['ui button basic icon'] href='http://localhost:3000/users/clientes/modificarcliente/'+cliente.codcliente data-inverted=''
+                data-tooltip='modificar' data-position='top center')
+                  i(class=['edit icon'])
+    script(src='/javascripts/clientes.js')

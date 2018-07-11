@@ -1,0 +1,43 @@
+extends ../templates/default
+
+
+block content
+  br
+  br
+  div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
+    div(class=["ten", "wide", "column"])
+      
+      h2(class=['ui', 'header', 'blue', "dividing"])= "Nuevo Cliente"
+      div(class=['ui','field'])
+        a(class="btn btn-primary", href="http://localhost:3000/users/clientes" role="button")='Regresar'
+        a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Menu Principal'
+      br
+      br
+      div(class='form-nuevocliente')
+        form(class=['ui','form'] action='http://localhost:3000/users/crearcliente' method='post')
+          div(class=['ui','two','fields'] )
+                div(class=['ui','field'])
+                  label(for='codcliente')='Rif o Cedula'
+                  input(type='text' name='codcliente' placeholder='Rif o Cedula' maxlength='10')
+                div(class=['ui','field'])
+                  label(for='nombre')='Razon Social o Nombre'
+                  input(type='text' name='nombre' placeholder='Razon Social o Nombre' maxlength='35')
+          div(class=['ui','two','fields'] )
+                div(class=['ui','field'])
+                  label(for='ciudad')='Ciudad'
+                  input(type='text' name='ciudad' placeholder='Ciudad' maxlength='30')
+                div(class=['ui','field'])
+                  label(for='estado')='Estado'
+                  input(type='text' name='estado' placeholder='Estado' maxlength='30') 
+          div(class=['ui','two','fields'] )
+                div(class=['ui','field'])
+                  label(for='telefono')='Telefono'
+                  input(type='text' name='telefono' placeholder='TLF Ej:02129993322' maxlength='11')
+          button(class=['ui','button','submit','blue'])= 'Crear' 
+          div(class=['ui','message','error'])
+      if info != undefined
+        div(class=['ui','message','success'])
+          i(class=['close','icon'])
+          div(class=['header'])= 'Cliente Registrado'
+          p= info
+    script(src='/javascripts/validacionClientes.js') 

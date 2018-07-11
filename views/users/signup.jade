@@ -1,0 +1,44 @@
+extends ../templates/default
+
+block content
+  br
+  br
+  div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
+    div(class=["ten", "wide", "column"])
+      if message.length > 0
+        div(class='alert alert-success' role='alert')= message
+      h2(class=['ui', 'header', 'blue', "dividing"])= "Registrar Nuevo Usuario"
+      div(class=['ui','field'])
+      a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Regresar'      
+      br
+      br
+      div(class='form-registrar')
+        form(class=['ui','form'] action='http://localhost:3000/users/signup' method='post' autocomplete='off')
+          div(class=['ui','two','fields'])
+            div(class=['ui','field'])
+              label(for='usuario')='Usuario'
+              input(type="tex" name='usuario' id='usuario' placeholder='Usuario' class='form-control' maxlength='10')
+            div(class=['ui','field'])
+              label(for='password')='Password'
+              input(type="password" name='password' id='password' placeholder='Password' class='form-control' maxlength='10')
+          div(class=['ui','three','fields'])
+            div(class=['ui','field'])
+              label(for='nombre')='Nombre'
+              input(type="tex" name='nombre' id='nombre' placeholder='Nombre' class='form-control' maxlength='30')
+            div(class=['ui','field'])
+              label(for='apellido')='Apellido'
+              input(type="tex" name='apellido' id='apellido' placeholder='Apellido' class='form-control' maxlength='30')
+            div(class=['ui','field'])
+              label(for='cedula')='Cedula'
+              input(type="integer" name='cedula' id='cedula' placeholder='Cedula Identidad' class='form-control' maxlength='10')
+          div(class=['ui','two','fields'] )
+            div(class=['ui','field'])
+              label(for='email')='Email'
+              input(type="email" name='email' id='email' placeholder='Email@email.es' class='form-control' maxlength='40')
+            div(class=['ui','field'])
+              label(for='telefono')='Telefono'
+              input(type="integer" name='telefono' id='telefono' placeholder="TLF Ej:02129993322" class='form-control' maxlength='11')
+          button(class=['ui','button','submit','blue'])= 'Registrar Nuevo'
+
+    script(src='/javascripts/validacionRegistrar.js')
+

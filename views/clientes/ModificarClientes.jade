@@ -1,0 +1,39 @@
+extends ../templates/default
+
+
+block content
+  br
+  br
+  div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
+    div(class=["ten", "wide", "column"])
+      
+      h2(class=['ui', 'header', 'blue', "dividing"])= "Nuevo Cliente"
+      div(class=['ui','field'])
+        a(class="btn btn-primary", href="http://localhost:3000/users/clientes" role="button")='Regresar'
+        a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Menu Principal'
+      br
+      br
+      div(class='form-nuevocliente')
+        form(class=['ui','form'] action='http://localhost:3000/users/clientes/editarcliente' method='post')
+          div(class=['ui','two','fields'] )
+                div(class=['ui','field'])
+                  label(for='codcliente')='Rif o Cedula'
+                  input(type='text' readonly="readonly"  name='codcliente' value=cliente[0].codcliente placeholder='Rif o Cedula' maxlength='10')
+                div(class=['ui','field'])
+                  label(for='nombre')='Razon Social o Nombre'
+                  input(type='text' name='nombre' value=cliente[0].nomcliente placeholder='Razon Social o Nombre' maxlength='35')
+          div(class=['ui','two','fields'] )
+                div(class=['ui','field'])
+                  label(for='ciudad')='Ciudad'
+                  input(type='text' name='ciudad' value=cliente[0].ciucliente placeholder='Ciudad' maxlength='30')
+                div(class=['ui','field'])
+                  label(for='estado')='Estado'
+                  input(type='text' name='estado' value=cliente[0].estcliente placeholder='Estado' maxlength='30') 
+          div(class=['ui','two','fields'] )
+                div(class=['ui','field'])
+                  label(for='telefono')='Telefono'
+                  input(type='text' name='telefono' value=cliente[0].telefono placeholder='TLF Ej:02129993322' maxlength='11')
+          button(class=['ui','button','submit','blue'])= 'Modificar' 
+          div(class=['ui','message','error'])
+
+    script(src='/javascripts/validacionClientes.js') 
