@@ -1,0 +1,53 @@
+extends ../templates/default
+
+
+block content
+  br
+  br
+  div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
+    div(class=["sixteen", "wide", "column"])
+      h2(class=['ui', 'header', 'blue', "dividing"])= "Listado de Producciones"
+      div(class=['ui','field'])
+        a(class="btn btn-primary" href="http://localhost:3000/users/produccion/nuevo" role="button")='Crear Produccion'
+        a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Regresar'
+
+      
+      table(class=['ui','table', 'celled'] id='tbl-produccion')
+        thead
+          tr
+            th= 'Ticket'
+            th= 'Calzado'
+            th= 'Modelo'
+            th(data-tooltip='Primer Color (Pala, Ojetera y Talon), Segundo Color (Lengueta y Laterales), Tercer Color (Adornos)' data-position='top center')= 'Color'
+            th= 'Pares'
+            th= 'Cliente'
+            th= 'Status'
+            th= 'Fecha Creacion'
+            th= 'Fecha Culminada'
+            th= 'Acciones'
+        tbody
+          each producc in produccion
+            tr
+              td(id='ticketpro')= producc.ticketpro
+              td= producc.tcalzado
+              td= producc.modelo
+
+              td
+                p=producc.color1 +'/'+ producc.color2 +'/'+ producc.color3
+              td= producc.pares
+              td= producc.cliente
+              td= producc.status
+              td= producc.fechacrea
+              td= producc.fechacomp
+              td
+                a(class=['ui button basic icon'] href='#' data-inverted=''
+                data-tooltip='Eliminar' data-position='top center' id='btn-eliminar')
+                  i(class=['trash icon'])
+                a(class=['ui button basic icon'] href='http://localhost:3000/users/produccion/modificarproduccion/'+producc.ticketpro data-inverted=''
+                data-tooltip='Modificar' data-position='top center')
+                  i(class=['edit icon'])
+                a(class=['ui button basic icon'] href='http://localhost:3000/users/produccion/modificarstatus/'+producc.ticketpro data-inverted=''
+                data-tooltip='Visualizar y Actualizar Status' data-position='top center')
+                  i(class=['eye icon'])
+
+    script(src='/javascripts/produccion.js')

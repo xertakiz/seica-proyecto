@@ -1,15 +1,15 @@
 $(function(){
     //funcion ajax elminar
-      $('#tbl-prima #btn-eliminar').click(function(e){
+      $('#tbl-produccion #btn-eliminar').click(function(e){
         e.preventDefault();
         var elemento = $(this);
-        var id = elemento.parent().parent().find('#codmaterial').text();
-            var confirmar = confirm('Desea Eliminar esta Materia Prima?');
+        var id = elemento.parent().parent().find('#ticketpro').text();
+            var confirmar = confirm('Desea Eliminar esta Produccion?');
             if(confirmar){
             $.ajax({
-                url :'http://localhost:3000/users/prima/eliminarprima',
+                url :'http://localhost:3000/users/produccion/eliminarproduccion',
                 method : 'post',
-                data : {codmaterial : id},
+                data : {ticketpro : id},
                 success : function(res){
                    //console.log(res);
                     if(res.res){

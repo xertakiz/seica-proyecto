@@ -1,0 +1,88 @@
+extends ../templates/default
+
+
+block content
+
+  br
+  br
+  div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
+    div(class=["ten", "wide", "column"])
+      
+      h2(class=['ui', 'header', 'blue', "dividing"])= "Modificar Produccion"
+      div(class=['ui','field'])
+        a(class="btn btn-primary", href="http://localhost:3000/users/produccion" role="button")='Regresar'
+        a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Menu Principal'
+      br
+      br
+      div(class='form-modificaproduccion')
+        form(class=['ui','form'] action='http://localhost:3000/users/produccion/editarproduccion' method='post')
+          div(class=['ui','four','fields'])
+                div(class=['ui','field'])
+                  label(for='ticketpro')='Ticket'
+                  input(type='text' name='ticketpro' placeholder='Ticket' readonly="readonly" value=produccion[0].ticketpro maxlength='4')
+                div(class=['ui','field'])
+                  label(for='modelo')='Modelo'
+                  select(name="modelo"  onChange="MM_jumpMenu('parent',this,0)")
+                    option(value=value=produccion[0].modelo)=value=produccion[0].modelo
+                    option(value="905P")='905P'
+                    option(value="905E")='905E'
+                    option(value="906P")='906p'
+                    option(value="906E")='906E'
+                    option(value="908P")='908P'
+                    option(value="908E")='908E' 
+                div(class=['ui','field'])
+                  label(for='tcalzado')='Tipo de Calzado'
+                  select(name="tcalzado" onChange="MM_jumpMenu('parent',this,0)")
+                    option(value=value=produccion[0].tcalzado)=value=produccion[0].tcalzado
+                    option(value="DAMA" )='Dama'
+                    option(value="NIÑO")='Niño'
+                    option(value="CABALLERO")='Caballero'
+                div(class=['ui','field'])
+                  label(for='fechacrea')='Fecha de Creacion'
+                  input(type='text' readonly="readonly" value=produccion[0].fechacrea name='fechacrea' placeholder='Fecha de Creacion' maxlength='30')
+          div(class=['ui','three','fields'])
+                div(class=['ui','field'])
+                  label(for='color1' data-inverted='' data-tooltip='Pala, Ojetera y Talon' data-position='top center')='Color 1'
+                  select(name="color1"  onChange="MM_jumpMenu('parent',this,0)")
+                    option(value=value=produccion[0].color1)=value=produccion[0].color1
+                    option(value="NEGRO" )='Negro'
+                    option(value="ROJO")='Rojo'
+                div(class=['ui','field'])
+                  label(for='color2' data-inverted='' data-tooltip='Lengueta y Laterales' data-position='top center')='Color 2'
+                  select(name="color2" onChange="MM_jumpMenu('parent',this,0)")
+                    option(value=value=produccion[0].color2)=value=produccion[0].color2
+                    option(value="NEGRO" )='Negro'
+                    option(value="ROJO")='Rojo'
+                div(class=['ui','field'])
+                  label(for='color3' data-inverted='' data-tooltip='Adornos' data-position='top center')='Color 3'
+                  select(name="color3" onChange="MM_jumpMenu('parent',this,0)")
+                    option(value=value=produccion[0].color3)=value=produccion[0].color3
+                    option(value="NEGRO" )='Negro'
+                    option(value="ROJO")='Rojo'
+          div(class=['ui','three','fields'])
+                div(class=['ui','field'])
+                  label(for='pares')='Pares'
+                  select(name="pares" onChange="MM_jumpMenu('parent',this,0)")
+                    option(value=value=produccion[0].pares)=value=produccion[0].pares
+                    option(value="15")='15 Pares'
+                    option(value="30")='30 Pares'
+                    option(value="45")='45 Pares'
+                    option(value="60")='60 Pares'
+                div(class=['ui','field'])
+                  label(for='notas' data-inverted='' data-tooltip='Grupo de Zapatos con Numeracion Estandar' data-position='top center')='Notas'
+                  select(name="notas" onChange="MM_jumpMenu('parent',this,0)")
+                    option(value=value=produccion[0].notas)=value=produccion[0].notas
+                    option(value="1")='1 Nota de 15 Pares'
+                    option(value="2")='2 Notas de 15 Pares C/U'
+                    option(value="3")='3 Notas de 15 Pares C/U'
+                    option(value="4")='4 notas de 15 Pares C/U'
+                div(class=['ui','field'])
+                  label(for='cliente')='Cliente'
+                  select(name="cliente"  onChange="MM_jumpMenu('parent',this,0)")
+                    option(value=value=produccion[0].cliente)=value=produccion[0].cliente
+                    option(value="DANNY LARA" )='Danny Lara'
+                    option(value="CREACIONES MARIA TERESA LARA C.A." )='Creaciones Maria Teresa Lara C.A.'
+          button(class=['ui','button','submit','blue'])= 'Modificar Produccion' 
+          div(class=['ui','message','error'])
+
+    script(src='/javascripts/validacionProduccion.js')

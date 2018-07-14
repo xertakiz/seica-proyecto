@@ -4,7 +4,7 @@ $(function(){
         e.preventDefault();
         var elemento = $(this);
         var id = elemento.parent().parent().find('#codcliente').text();
-            var confirmar = confirm('Desear Eliminar producto');
+            var confirmar = confirm('Desea Eliminar este Cliente?');
             if(confirmar){
             $.ajax({
                 url :'http://localhost:3000/users/clientes/eliminarcliente',

@@ -1,0 +1,100 @@
+extends ../templates/default
+
+
+
+block content
+
+  br
+  br
+  div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
+    div(class=["thirteen", "wide", "column"])
+      
+      h2(class=['ui', 'header', 'blue', "dividing"])= "Status Produccion"
+      div(class=['ui','field'])
+        a(class="btn btn-primary", href="http://localhost:3000/users/produccion" role="button")='Regresar'
+        a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Menu Principal'
+      br
+      br
+      div(class='form-modificastatus')
+        form(class=['ui','form'] action='http://localhost:3000/users/produccion/editarproduccion' method='post')
+          div(class=['ui','five','fields'])
+                div(class=['ui','field'])
+                  label(for='ticketpro')='Ticket'
+                  input(type='text' name='ticketpro' placeholder='Ticket' readonly="readonly" value=produccion[0].ticketpro maxlength='4')
+          div(class=['ui','two','fields'])
+                div(class=['ui','field'])
+                  label(for='modelo')='modelo'
+                  input(type='text' value=produccion[0].modelo readonly="readonly" name='modelo')
+                div(class=['ui','field'])
+                  label(for='tcalzado')='Tipo de Calzado'
+                  input(type='text' readonly="readonly" value=produccion[0].tcalzado name='tcalzado')
+                div(class=['ui','field'])
+                  label(for='colores')='Colores'
+                  input(type='text' value= produccion[0].color1 +'/'+produccion[0].color2 + '/'+ produccion[0].color3 readonly="readonly"  name='colores')
+                div(class=['ui','field'])
+                  label(for='fechacrea')='Fecha de Creacion'
+                  input(type='text' readonly="readonly" value=produccion[0].fechacrea name='fechacrea')
+
+              //falta hacer que me traiga la informacion de los checkbox o modificarlo por otra cosa
+
+          div(class=['ui','three','fields'])
+            div(class=['ui','field'])       
+                div(class=["ui", "left", "floated", "compact", "segment"])
+                  div(class=["ui", "fitted", "toggle", "checkbox"])                 
+                    input(type="checkbox" name="cortada" value=1 )
+                    label=''
+                    
+                  div(class=['ui','field'])
+                    label(for='cortada')='Cortada'
+                    input(type='text' readonly="readonly" name='fechacort' placeholder='Fecha Cortada' maxlength='30')
+            div(class=['ui','field'])
+                div(class=["ui", "left", "floated", "compact", "segment"])
+                  div(class=["ui", "fitted", "toggle", "checkbox"])
+                    input(type="checkbox" name="marcada" value=1)
+                    label=''
+                  div(class=['ui','field'])
+                    label(for='maracada')='Marcada'
+                    input(type='text' readonly="readonly" name='fechamarca' placeholder='Fecha Marcada' maxlength='30')
+            div(class=['ui','field'])
+                div(class=["ui", "left", "floated", "compact", "segment"])
+                  div(class=["ui", "fitted", "toggle", "checkbox"])
+                    input(type="checkbox" name="costura" value=1)
+                    label=''
+                  div(class=['ui','field'])
+                    label(for='costura')='Costura'
+                    input(type='text' readonly="readonly" name='fechacost' placeholder='Fecha Costuriada' maxlength='30')
+          div(class=['ui','three','fields'])
+            div(class=['ui','field'])
+                div(class=["ui", "left", "floated", "compact", "segment"])
+                  div(class=["ui", "fitted", "toggle", "checkbox"])
+                    input(type="checkbox" name="montura" value=1)
+                    label=''
+                  div(class=['ui','field'])
+                    label(for='montura')='Montura'
+                    input(type='text' readonly="readonly" name='fechamon' placeholder='Fecha Montada' maxlength='30')
+            div(class=['ui','field'])
+                div(class=["ui", "left", "floated", "compact", "segment"])
+                  div(class=["ui", "fitted", "toggle", "checkbox"])
+                    input(type="checkbox" name="soleteada" value=1)
+                    label=''
+                  div(class=['ui','field'])
+                    label(for='soleteada')='Soleteada'
+                    input(type='text' readonly="readonly" name='fechasole' placeholder='Fecha Soleteada' maxlength='30')
+            div(class=['ui','field'])
+                div(class=["ui", "left", "floated", "compact", "segment"])
+                  div(class=["ui", "fitted", "toggle", "checkbox"])
+                    input(type="checkbox" name="encajada" value=1)
+                    label=''
+                  div(class=['ui','field'])
+                    label(for='encajada')='Encajada'
+                    input(type='text' readonly="readonly" name='fechaenca' placeholder='Fecha Encajada' maxlength='30')
+          div(class=['ui','three','fields'])
+            div(class=['ui','field'])
+            div(class=['ui','field'])
+                div(class=["ui", "left", "floated", "compact", "segment"])
+                  div(class=["ui", "fitted", "toggle", "checkbox"])
+                    input(type="checkbox" name="completado" value=1)
+                    label=''
+                  div(class=['ui','field'])
+                    label(for='completado')='Completado'
+                    input(type='text' readonly="readonly" name='fechacomp' placeholder='Fecha Completada' maxlength='30')

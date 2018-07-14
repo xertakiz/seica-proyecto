@@ -2,7 +2,9 @@ var config ={
     host : 'localhost',
     user : 'root',
     password : '',
-    database : 'seica'
+    database : 'seica',
+
+    dateStrings : true
 };
 
 module.exports = config;

@@ -38,10 +38,15 @@ router.get('/users/prima/modificarprima/:codmaterial',AuthMiddleware.isLogged, c
 router.post('/users/prima/editarprima',AuthMiddleware.isLogged, controllers.MatPrimaController.postModificarPrima);
 //______________________________________
 	//rutas produccion
+router.get('/users/produccion',AuthMiddleware.isLogged, controllers.ProduccionController.getProduccion);
+router.get('/users/produccion/nuevo',AuthMiddleware.isLogged, controllers.ProduccionController.getNuevoProduccion);
+router.post('/users/produccion/crearproduccion',AuthMiddleware.isLogged, controllers.ProduccionController.postNuevoProduccion);
+router.post('/users/produccion/eliminarproduccion',AuthMiddleware.isLogged, controllers.ProduccionController.EliminarProduccion);
+router.get('/users/produccion/modificarproduccion/:ticketpro',AuthMiddleware.isLogged, controllers.ProduccionController.getModificarProduccion);
+router.post('/users/produccion/editarproduccion',AuthMiddleware.isLogged, controllers.ProduccionController.postModificarProduccion);
 
-
-
-
+router.get('/users/produccion/modificarstatus/:ticketpro',AuthMiddleware.isLogged, controllers.ProduccionController.getModificarStatus);
+router.post('/users/produccion/editarstatus',AuthMiddleware.isLogged, controllers.ProduccionController.postModificarStatus);
 
 //______________________________________
 	//rutas productos terminados
@@ -58,6 +63,12 @@ router.post('/users/clientes/crearcliente',AuthMiddleware.isLogged, controllers.
 router.post('/users/clientes/eliminarcliente',AuthMiddleware.isLogged, controllers.ClientesController.EliminarCliente);
 router.get('/users/clientes/modificarcliente/:codcliente',AuthMiddleware.isLogged, controllers.ClientesController.getModificarCliente);
 router.post('/users/clientes/editarcliente',AuthMiddleware.isLogged, controllers.ClientesController.postModificarCliente);
+
+//__________________________________________________________________
+//rutas Despachos (Administradores)
+
+
+
 
 module.exports = router;
 
