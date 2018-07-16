@@ -25,6 +25,24 @@ module.exports ={
         user : req.user});
     },
     postNuevoProduccion: function(req,res,next){
+/*
+///// aqui tratando de hacer que los select funcionen pero nada
+
+        var config =require('.././database/config');;
+        var db=mysql.createConnection(config);
+        db.connect();
+
+        var color = null;
+        db.query('SELECT color FROM matprima WHERE codmaterial = ?',codmaterial, function(err,rows,fields){
+            if(err)throw err;
+            color = rows;
+            db.end();
+            
+            res.render('produccion/ModificaProduccion', {color: color, isAuthenticated : req.isAuthenticated(),
+                user : req.user});
+        });
+       
+ */      
         var fechaactual = new Date();
         var fecha = dateFormat(fechaactual, 'yyyy-mm-dd');
         

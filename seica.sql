@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-07-2018 a las 21:38:25
+-- Tiempo de generación: 16-07-2018 a las 05:40:51
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 5.6.36
 
@@ -69,6 +69,52 @@ INSERT INTO `matprima` (`codmaterial`, `nommaterial`, `color`, `existencia`, `de
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `produccion`
+--
+
+CREATE TABLE `produccion` (
+  `ticketpro` int(11) NOT NULL,
+  `tcalzado` varchar(10) NOT NULL,
+  `fechacrea` date NOT NULL,
+  `modelo` varchar(15) NOT NULL,
+  `cliente` varchar(35) DEFAULT NULL,
+  `color1` varchar(30) NOT NULL,
+  `color2` varchar(30) NOT NULL,
+  `color3` varchar(30) NOT NULL,
+  `pares` int(11) NOT NULL,
+  `notas` int(11) NOT NULL,
+  `status` varchar(30) NOT NULL,
+  `cortada` tinyint(1) DEFAULT NULL,
+  `fechacort` date DEFAULT NULL,
+  `marcada` tinyint(1) DEFAULT NULL,
+  `fechamarca` date DEFAULT NULL,
+  `costura` tinyint(1) DEFAULT NULL,
+  `fechacost` date DEFAULT NULL,
+  `montura` tinyint(1) DEFAULT NULL,
+  `fechamon` date DEFAULT NULL,
+  `soleteada` tinyint(1) DEFAULT NULL,
+  `fechasole` date DEFAULT NULL,
+  `encajada` tinyint(1) DEFAULT NULL,
+  `fechaenca` date DEFAULT NULL,
+  `completado` tinyint(1) DEFAULT NULL,
+  `fechacomp` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `produccion`
+--
+
+INSERT INTO `produccion` (`ticketpro`, `tcalzado`, `fechacrea`, `modelo`, `cliente`, `color1`, `color2`, `color3`, `pares`, `notas`, `status`, `cortada`, `fechacort`, `marcada`, `fechamarca`, `costura`, `fechacost`, `montura`, `fechamon`, `soleteada`, `fechasole`, `encajada`, `fechaenca`, `completado`, `fechacomp`) VALUES
+(4545, 'DAMA', '2018-07-14', '905P', 'DANNY LARA', 'NEGRO', 'NEGRO', 'NEGRO', 15, 1, 'CORTADO', 1, '2018-07-14', NULL, '0000-00-00', NULL, '0000-00-00', NULL, '0000-00-00', NULL, '0000-00-00', NULL, '0000-00-00', NULL, '0000-00-00'),
+(5453, 'DAMA', '2018-07-14', '905P', 'DANNY LARA', 'NEGRO', 'NEGRO', 'NEGRO', 15, 1, 'COMPLETADO', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14'),
+(5555, 'DAMA', '2018-07-13', '905P', 'DANNY LARA', 'NEGRO', 'NEGRO', 'NEGRO', 15, 1, 'COSTUREADO', 1, '2018-07-13', 1, '2018-07-13', 1, '2018-07-13', NULL, '0000-00-00', NULL, '0000-00-00', NULL, '0000-00-00', NULL, '0000-00-00'),
+(6666, 'DAMA', '2018-07-13', '905P', 'DANNY LARA', 'NEGRO', 'NEGRO', 'NEGRO', 15, 1, 'COMPLETADO', 1, '2018-07-13', 1, '2018-07-13', 1, '2018-07-13', 1, '2018-07-13', 1, '2018-07-13', 1, '2018-07-13', 1, '2018-07-13'),
+(7777, 'DAMA', '2018-07-14', '905P', 'DANNY LARA', 'NEGRO', 'NEGRO', 'NEGRO', 15, 1, 'COMPLETADO', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', NULL, '0000-00-00'),
+(8885, 'DAMA', '2018-07-14', '905P', 'DANNY LARA', 'NEGRO', 'NEGRO', 'NEGRO', 15, 1, 'COMPLETADO', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `users`
 --
 
@@ -104,6 +150,12 @@ ALTER TABLE `clientes`
 --
 ALTER TABLE `matprima`
   ADD PRIMARY KEY (`codmaterial`);
+
+--
+-- Indices de la tabla `produccion`
+--
+ALTER TABLE `produccion`
+  ADD PRIMARY KEY (`ticketpro`);
 
 --
 -- Indices de la tabla `users`

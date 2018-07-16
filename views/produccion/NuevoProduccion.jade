@@ -1,5 +1,8 @@
 extends ../templates/default
 
+ 
+
+
 
 block content
 
@@ -40,13 +43,17 @@ block content
                 div(class=['ui','field'])
                   label(for='fechacrea')='Fecha de Creacion'
                   input(type='text' readonly="readonly" name='fechacrea' placeholder='Fecha de Creacion' maxlength='30')
+          
+          
           div(class=['ui','three','fields'])
                 div(class=['ui','field'])
                   label(for='color1' data-inverted='' data-tooltip='Pala, Ojetera y Talon' data-position='top center')='Color 1'
                   select(name="color1" onChange="MM_jumpMenu('parent',this,0)")
-                    option(value="" )=''
+                    option(value="" )=''    
                     option(value="NEGRO" )='Negro'
                     option(value="ROJO")='Rojo'
+                
+                
                 div(class=['ui','field'])
                   label(for='color2' data-inverted='' data-tooltip='Lengueta y Laterales' data-position='top center')='Color 2'
                   select(name="color2" onChange="MM_jumpMenu('parent',this,0)")
