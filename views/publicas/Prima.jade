@@ -1,0 +1,29 @@
+extends ../templates/default
+
+
+block content
+  br
+  br
+  div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
+    div(class=["sixteen", "wide", "column"])
+      h2(class=['ui', 'header', 'blue', "dividing"])= "Lista de Materia Prima"
+      div(class=['ui','field'])
+        a(class="btn btn-primary" href="http://localhost:3000/inicio" role="button")='Regresar'
+
+      
+      table(class=['ui','table', 'celled'] id='tbl-Prima')
+        thead
+          tr
+            th= 'Codigo'
+            th= 'Nombre'
+            th= 'Color'
+            th= 'Disponible'
+            th= 'Descripcion'
+        tbody
+          each producto in prima
+            tr
+              td(id='codmaterial')= producto.codmaterial
+              td= producto.nommaterial
+              td= producto.color
+              td= producto.existencia
+              td= producto.descripcion

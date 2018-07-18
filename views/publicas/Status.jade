@@ -1,0 +1,144 @@
+extends ../templates/default
+
+block content
+
+  br
+  br
+  div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
+    div(class=["thirteen", "wide", "column"])
+      
+      h2(class=['ui', 'header', 'blue', "dividing"])= "Status Produccion"
+      div(class=['ui','field'])
+        a(class="btn btn-primary", href="http://localhost:3000/public/produccion" role="button")='Regresar'
+        a(class="btn btn-primary" href="http://localhost:3000/inicio" role="button")='Menu Principal'
+      br
+      br
+      div(class='form-status')
+        form(class=['ui','form'] action='#' method='post')
+          div(class=['ui','five','fields'])
+                div(class=['ui','field'])
+                  label(for='ticketpro')='Ticket'
+                  input(type='text' name='ticketpro' placeholder='Ticket' readonly="readonly" value=produccion[0].ticketpro maxlength='4')
+          div(class=['ui','two','fields'])
+                div(class=['ui','field'])
+                  label(for='modelo')='modelo'
+                  input(type='text' value=produccion[0].modelo readonly="readonly" name='modelo')
+                div(class=['ui','field'])
+                  label(for='tcalzado')='Tipo de Calzado'
+                  input(type='text' readonly="readonly" value=produccion[0].tcalzado name='tcalzado')
+                div(class=['ui','field'])
+                  label(for='colores')='Colores'
+                  input(type='text' value= produccion[0].color1 +'/'+produccion[0].color2 + '/'+ produccion[0].color3 readonly="readonly"  name='colores')
+
+          div(class=['ui','four','fields'])
+            div(class=['ui','field'])
+                div(class=["ui", "left", "floated", "compact", "segment"])
+                  div(class=["ui", "fitted", "toggle"])
+                    label(for='cortada')='Cortada'
+                    if value=produccion[0].cortada == 1
+                      input(type='text' name='cortada' placeholder='Cortada' readonly="readonly" value="Si")
+                    else
+                      input(type='text' name='cortada' placeholder='Cortada' readonly="readonly" value="")
+                  br
+                  div(class=['ui','field'])
+                    label(for='fechacortada')='Fecha Cortada'
+                    if value=produccion[0].fechacort != "0000-00-00"
+                      input(type='text' readonly="readonly" value=produccion[0].fechacort name='fechacortada')
+                    else
+                      input(type='text' readonly="readonly" value='' name='fechacortada' placeholder='Fecha Cortada')
+             
+            div(class=['ui','field'])
+                div(class=["ui", "left", "floated", "compact", "segment"])
+                  div(class=["ui", "fitted", "toggle"])
+                    label(for='marcada')='Marcada'
+                    if value=produccion[0].marcada == 1
+                      input(type='text' name='marcada' placeholder='Marcada' readonly="readonly" value="Si")
+                    else
+                      input(type='text' name='marcada' placeholder='Marcada' readonly="readonly" value="")
+                  br
+                  div(class=['ui','field'])
+                    label(for='fechamarcada')='Fecha Marcada'
+                    if value=produccion[0].fechamarca != "0000-00-00"
+                      input(type='text' readonly="readonly" value=produccion[0].fechamarca name='fechamarcada')
+                    else
+                      input(type='text' readonly="readonly" value='' name='fechamarcada' placeholder='Fecha Marcada')
+
+            div(class=['ui','field'])
+                div(class=["ui", "left", "floated", "compact", "segment"])
+                  div(class=["ui", "fitted", "toggle"])
+                    label(for='costura')='Costura'
+                    if value=produccion[0].costura == 1
+                      input(type='text' name='costura' placeholder='Costura' readonly="readonly" value="Si")
+                    else
+                      input(type='text' name='costura' placeholder='Costura' readonly="readonly" value="")
+                  br
+                  div(class=['ui','field'])
+                    label(for='fechacostura')='Fecha Costura'
+                    if value=produccion[0].fechacost != "0000-00-00"
+                      input(type='text' readonly="readonly" value=produccion[0].fechacost name='fechacostura')
+                    else
+                      input(type='text' readonly="readonly" value='' name='fechacostura' placeholder='Fecha Costura')
+        
+            div(class=['ui','field'])
+                div(class=["ui", "left", "floated", "compact", "segment"])
+                  div(class=["ui", "fitted", "toggle"])
+                    label(for='montura')='Montura'
+                    if value=produccion[0].montura == 1
+                      input(type='text' name='montura' placeholder='Montura' readonly="readonly" value="Si")
+                    else
+                      input(type='text' name='montura' placeholder='Montura' readonly="readonly" value="")
+                  br
+                  div(class=['ui','field'])
+                    label(for='fechamontura')='Fecha Montura'
+                    if value=produccion[0].fechamon != "0000-00-00"
+                      input(type='text' readonly="readonly" value=produccion[0].fechamon name='fechamontura')
+                    else
+                      input(type='text' readonly="readonly" value='' name='fechamontura' placeholder='Fecha Montura')
+          div(class=['ui','for','fields'])
+            div(class=['ui','field'])
+            div(class=['ui','field'])
+                div(class=["ui", "left", "floated", "compact", "segment"])
+                  div(class=["ui", "fitted", "toggle"])
+                    label(for='soleteada')='Soleteada'
+                    if value=produccion[0].soleteada == 1
+                      input(type='text' name='soleteada' placeholder='Soleteada' readonly="readonly" value="Si")
+                    else
+                      input(type='text' name='soleteada' placeholder='Soleteada' readonly="readonly" value="")
+                  br
+                  label(for='fechasoleteada')='Fecha Soleteada'
+                    if value=produccion[0].fechasole != "0000-00-00"
+                      input(type='text' readonly="readonly" value=produccion[0].fechasole name='fechasoleteada')
+                    else
+                      input(type='text' readonly="readonly" value='' name='fechasoleteada' placeholder='Fecha Soleteada')
+
+            div(class=['ui','field'])
+                div(class=["ui", "left", "floated", "compact", "segment"])
+                  div(class=["ui", "fitted", "toggle"])
+                    label(for='encajada')='Encajada'
+                    if value=produccion[0].encajada == 1
+                      input(type='text' name='encajada' placeholder='Encajada' readonly="readonly" value="Si")
+                    else
+                      input(type='text' name='encajada' placeholder='Encajada' readonly="readonly" value="")
+                  br
+                  div(class=['ui','field'])
+                    label(for='fechaencajada')='Fecha Encajada'
+                    if value=produccion[0].fechaenca != "0000-00-00"
+                      input(type='text' readonly="readonly" value=produccion[0].fechaenca name='fechaencajada')
+                    else
+                      input(type='text' readonly="readonly" value='' name='fechaencajada' placeholder='Fecha Encajada')
+
+            div(class=['ui','field'])
+              div(class=["ui", "left", "floated", "compact", "segment"])
+                div(class=["ui", "fitted", "toggle"])
+                    label(for='completado')='Completado'
+                    if value=produccion[0].completado == 1
+                      input(type='text' name='completado' placeholder='Completado' readonly="readonly" value="Si")
+                    else
+                      input(type='text' name='completado' placeholder='Completado' readonly="readonly" value="")
+                br
+                div(class=['ui','field'])
+                  label(for='fechacomp')='Fecha Completado'
+                    if value=produccion[0].fechacomp != "0000-00-00"
+                      input(type='text' readonly="readonly" value=produccion[0].fechacomp name='fecha Completado')
+                    else
+                      input(type='text' readonly="readonly" value='' name='fechacomp' placeholder='Fecha Completado')

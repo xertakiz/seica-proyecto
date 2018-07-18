@@ -9,6 +9,11 @@ nav(class="navbar navbar-default")
       a(class="navbar-brand" href="/inicio")= 'Inicio'
     if !isAuthenticated
       a(class="navbar-brand" href="http://localhost:3000/auth/signin")= 'Iniciar Sesion'
+      
+      a(class="navbar-brand" href="http://localhost:3000/public/prima")= 'Materia Prima'
+      a(class="navbar-brand" href="http://localhost:3000/public/produccion")= 'Producción'
+      a(class="navbar-brand" href="/inicio")= 'Productos Terminados'
+
     if isAuthenticated
       a(class="navbar-brand" href="http://localhost:3000/users/prima")= 'Materia Prima'
       a(class="navbar-brand" href="http://localhost:3000/users/produccion")= 'Producción'

@@ -8,11 +8,10 @@ block content
     div(class=["sixteen", "wide", "column"])
       h2(class=['ui', 'header', 'blue', "dividing"])= "Listado de Producciones"
       div(class=['ui','field'])
-        a(class="btn btn-primary" href="http://localhost:3000/users/produccion/nuevo" role="button")='Crear Produccion'
-        a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Regresar'
+        a(class="btn btn-primary" href="http://localhost:3000/inicio" role="button")='Regresar'
 
       
-      table(class=['ui','table', 'celled'] id='tbl-produccion')
+      table(class=['ui','table', 'celled'] id='tbl-Produccion')
         thead
           tr
             th= 'Ticket'
@@ -25,7 +24,7 @@ block content
             th= 'Status'
             th= 'Fecha Creacion'
             th= 'Fecha Culminada'
-            th= 'Acciones'
+            th= 'Visualizar'
         tbody
           each producc in produccion
             tr
@@ -42,14 +41,7 @@ block content
               td= producc.fechacrea
               td= producc.fechacomp
               td
-                a(class=['ui button basic icon'] href='#' data-inverted=''
-                data-tooltip='Eliminar' data-position='top center' id='btn-eliminar')
-                  i(class=['trash icon'])
-                a(class=['ui button basic icon'] href='http://localhost:3000/users/produccion/modificarproduccion/'+producc.ticketpro data-inverted=''
-                data-tooltip='Modificar' data-position='top center')
-                  i(class=['edit icon'])
-                a(class=['ui button basic icon'] href='http://localhost:3000/users/produccion/modificarstatus/'+producc.ticketpro data-inverted=''
-                data-tooltip='Visualizar y Actualizar Status' data-position='top center')
+                a(class=['ui button basic icon'] href='http://localhost:3000/public/produccion/status/'+producc.ticketpro data-inverted=''
+                data-tooltip='Visualizar Status' data-position='top center')
                   i(class=['eye icon'])
 
-    script(src='/javascripts/produccion.js')

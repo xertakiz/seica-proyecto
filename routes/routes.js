@@ -44,13 +44,12 @@ router.post('/users/produccion/crearproduccion',AuthMiddleware.isLogged, control
 router.post('/users/produccion/eliminarproduccion',AuthMiddleware.isLogged, controllers.ProduccionController.EliminarProduccion);
 router.get('/users/produccion/modificarproduccion/:ticketpro',AuthMiddleware.isLogged, controllers.ProduccionController.getModificarProduccion);
 router.post('/users/produccion/editarproduccion',AuthMiddleware.isLogged, controllers.ProduccionController.postModificarProduccion);
-
 router.get('/users/produccion/modificarstatus/:ticketpro',AuthMiddleware.isLogged, controllers.ProduccionController.getModificarStatus);
 router.post('/users/produccion/editarstatus',AuthMiddleware.isLogged, controllers.ProduccionController.postModificarStatus);
 
 //______________________________________
 	//rutas productos terminados
-
+	router.get('/users/termnado',AuthMiddleware.isLogged, controllers.ProduccionController.getTerminado);
 
 
 
@@ -69,6 +68,11 @@ router.post('/users/clientes/editarcliente',AuthMiddleware.isLogged, controllers
 
 
 
+//__________________________________________________________________
+//rutas Publicas
+router.get('/public/prima', controllers.PublicController.getPublicPrima);
+router.get('/public/produccion', controllers.PublicController.getPublicProduccion);
+router.get('/public/produccion/status/:ticketpro', controllers.PublicController.getPublicStatus);
 
 module.exports = router;
 
