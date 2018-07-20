@@ -1,0 +1,53 @@
+extends ../../templates/default
+
+style.
+    body {
+      background-color: blue;
+      font-size: 19px;
+      color: #464646;
+    }
+
+block content
+  br
+  br
+  div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
+    div(class=["fifteen", "wide", "column"])
+      h2(class=['ui', 'header', 'blue', "dividing"])= "Listado de Plantas"
+      div(class=['ui','field'])
+        a(class="btn btn-primary" href="http://localhost:3000/users/prima/planta/nuevo"  role="button")='Crear Planta'
+        a(class="btn btn-primary" href="http://localhost:3000/users/prima" role="button")='Regresar'
+        a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Menu Principal'
+      br
+      form(class=['ui','form'] action='#' method='post') 
+        div(class=['ui','for','fields'])
+          div(class=['ui','field'])
+            input(type='text' name='codplanta' placeholder='Codigo a Buscar' maxlength='20')
+          div(class=['ui','field'])
+            button(class=['ui','button','submit','blue'])='Buscar'
+        
+
+      
+      table(class=['ui','table', 'celled'] id='tbl-planta')
+        thead
+          tr
+            th= 'Codigo'
+            th= 'Nombre'
+            th= 'Disponible'
+            th= 'Descripcion'
+            th= 'Acciones'
+        tbody
+          each producto in planta
+            tr
+              td(id='codplanta')= producto.codplanta
+              td= producto.nomplanta
+              td= producto.existencia
+              td= producto.descripcion
+              td
+                a(class=['ui button basic icon'] href='#' data-inverted=''
+                data-tooltip='Eliminar' data-position='top center' id='btn-eliminar')
+                  i(class=['trash icon'])
+                a(class=['ui button basic icon'] href='http://localhost:3000/users/prima/planta/modificarplanta/'+producto.codplanta data-inverted=''
+                data-tooltip='modificar' data-position='top center')
+                  i(class=['edit icon'])
+
+    script(src='/javascripts/planta.js')

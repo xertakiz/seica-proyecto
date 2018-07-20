@@ -10,7 +10,15 @@ block content
       div(class=['ui','field'])
         a(class="btn btn-primary" href="http://localhost:3000/users/produccion/nuevo" role="button")='Crear Produccion'
         a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Regresar'
-
+      br
+      br
+      form(class=['ui','form'] action='#' method='post') 
+        div(class=['ui','for','fields'])
+          div(class=['ui','field'])
+            input(type='text' name='ticketpro' placeholder='Ticket a Buscar' maxlength='4')
+          div(class=['ui','field'])
+            button(class=['ui','button','submit','blue'])='Buscar'
+          
       
       table(class=['ui','table', 'celled'] id='tbl-produccion')
         thead
@@ -18,10 +26,10 @@ block content
             th= 'Ticket'
             th= 'Calzado'
             th= 'Modelo'
-            th(data-tooltip='Primer Color (Pala, Ojetera y Talon), Segundo Color (Lengueta y Laterales), Tercer Color (Adornos)' data-position='top center')= 'Color'
+            th(data-tooltip='Primer Color Princiapl, Segundo Color Adornos' data-position='top center')= 'Color'
             th= 'Pares'
             th= 'Notas'
-            //th= 'Cliente'
+            th= 'Cliente'
             th= 'Status'
             th= 'Fecha Creacion'
             th= 'Fecha Culminada'
@@ -32,12 +40,11 @@ block content
               td(id='ticketpro')= producc.ticketpro
               td= producc.tcalzado
               td= producc.modelo
-
               td
-                p=producc.color1 +'/'+ producc.color2 +'/'+ producc.color3
+                p=producc.color1 +' / '+ producc.color2
               td= producc.pares
               td= producc.notas
-              //td= producc.cliente
+              td= producc.cliente
               td= producc.status
               td= producc.fechacrea
               td= producc.fechacomp

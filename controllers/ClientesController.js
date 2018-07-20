@@ -29,7 +29,7 @@ module.exports ={
        
         var cliente = {
             codcliente : req.body.codcliente,
-            nomcliente : req.body.nombre,
+            cliente : req.body.nombre,
             ciucliente : req.body.ciudad,
             estcliente : req.body.estado,
             telefono : req.body.telefono
@@ -79,7 +79,7 @@ module.exports ={
     },
     postModificarCliente :function(req,res,next){
         var cliente = {
-            nomcliente : req.body.nombre,
+            cliente : req.body.nombre,
             ciucliente : req.body.ciudad,
             estcliente : req.body.estado,
             telefono : req.body.telefono

@@ -29,13 +29,29 @@ router.post('/users/signup',AuthMiddleware.isLogged, controllers.UserController.
 
 //__________________________________________________________________
 //rutas para todos los modulos de produccion (Administradores)
-	//rutas materia prima
+//______________________________________	
+//	rutas materia prima
 router.get('/users/prima',AuthMiddleware.isLogged, controllers.MatPrimaController.getPrima);
-router.get('/users/prima/nuevo',AuthMiddleware.isLogged, controllers.MatPrimaController.getNuevoPrima);
-router.post('/users/prima/crearprima',AuthMiddleware.isLogged, controllers.MatPrimaController.postNuevoPrima);
-router.post('/users/prima/eliminarprima',AuthMiddleware.isLogged, controllers.MatPrimaController.EliminarPrima);
-router.get('/users/prima/modificarprima/:codmaterial',AuthMiddleware.isLogged, controllers.MatPrimaController.getModificarPrima);
-router.post('/users/prima/editarprima',AuthMiddleware.isLogged, controllers.MatPrimaController.postModificarPrima);
+
+//______________________________________
+	//rutas prima/Pega
+
+//______________________________________
+	//rutas prima/Planta
+router.get('/users/prima/planta',AuthMiddleware.isLogged, controllers.MatPrimaController.getPlanta);
+router.get('/users/prima/planta/nuevo',AuthMiddleware.isLogged, controllers.MatPrimaController.getNuevoPlanta);
+router.post('/users/prima/planta/crearplanta',AuthMiddleware.isLogged, controllers.MatPrimaController.postNuevoPlanta);
+router.post('/users/prima/planta/eliminarplanta',AuthMiddleware.isLogged, controllers.MatPrimaController.EliminarPlanta);
+router.get('/users/prima/planta/modificarplanta/:codplanta',AuthMiddleware.isLogged, controllers.MatPrimaController.getModificarPlanta);
+router.post('/users/prima/planta/editarplanta',AuthMiddleware.isLogged, controllers.MatPrimaController.postModificarPlanta);
+//______________________________________
+	//rutas prima/Material
+router.get('/users/prima/material',AuthMiddleware.isLogged, controllers.MatPrimaController.getMaterial);
+router.get('/users/prima/material/nuevo',AuthMiddleware.isLogged, controllers.MatPrimaController.getNuevoMaterial);
+router.post('/users/prima/material/crearmaterial',AuthMiddleware.isLogged, controllers.MatPrimaController.postNuevoMaterial);
+router.post('/users/prima/material/eliminarmaterial',AuthMiddleware.isLogged, controllers.MatPrimaController.EliminarMaterial);
+router.get('/users/prima/material/modificarmaterial/:codmaterial',AuthMiddleware.isLogged, controllers.MatPrimaController.getModificarMaterial);
+router.post('/users/prima/material/editarmaterial',AuthMiddleware.isLogged, controllers.MatPrimaController.postModificarMaterial);
 //______________________________________
 	//rutas produccion
 router.get('/users/produccion',AuthMiddleware.isLogged, controllers.ProduccionController.getProduccion);
@@ -48,10 +64,11 @@ router.get('/users/produccion/modificarstatus/:ticketpro',AuthMiddleware.isLogge
 router.post('/users/produccion/editarstatus',AuthMiddleware.isLogged, controllers.ProduccionController.postModificarStatus);
 
 //______________________________________
-	//rutas productos terminados
-	router.get('/users/termnado',AuthMiddleware.isLogged, controllers.ProduccionController.getTerminado);
-
-
+	//rutas productos terminados (Administradores)
+router.get('/users/terminado',AuthMiddleware.isLogged, controllers.TerminadoController.getTerminado);
+router.get('/users/terminado/nuevo',AuthMiddleware.isLogged, controllers.TerminadoController.getNuevoTerminado);
+router.post('/users/terminado/crearterminado',AuthMiddleware.isLogged, controllers.TerminadoController.postNuevoTerminado);
+router.post('/users/terminado/eliminarterminado',AuthMiddleware.isLogged, controllers.TerminadoController.EliminarTerminado);
 
 
 //__________________________________________________________________

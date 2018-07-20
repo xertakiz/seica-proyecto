@@ -32,14 +32,12 @@ block content
                   input(type='text' readonly="readonly" value=produccion[0].fechacrea name='fechacrea' placeholder='Fecha de Creacion' maxlength='30')
           div(class=['ui','three','fields'])
                 div(class=['ui','field'])
-                  label(for='color1' data-inverted='' data-tooltip='Pala, Ojetera y Talon' data-position='top center')='Color 1'
+                  label(for='color1' data-inverted='' data-tooltip='Color Principal' data-position='top center')='Color 1'
                   input(type='text' name='color1'  readonly="readonly" value=produccion[0].color1)
                 div(class=['ui','field'])
-                  label(for='color2' data-inverted='' data-tooltip='Lengueta y Laterales' data-position='top center')='Color 2'
+                  label(for='color2' data-inverted='' data-tooltip='dornos' data-position='top center')='Color 2'
                   input(type='text' name='color2'  readonly="readonly" value=produccion[0].color2)
-                div(class=['ui','field'])
-                  label(for='color3' data-inverted='' data-tooltip='Adornos' data-position='top center')='Color 3'
-                  input(type='text' name='color3'  readonly="readonly" value=produccion[0].color3)
+
           div(class=['ui','three','fields'])
                 div(class=['ui','field'])
                   label(for='pares')='Pares'
@@ -47,11 +45,11 @@ block content
                 div(class=['ui','field'])
                   label(for='notas' data-inverted='' data-tooltip='Grupo de Zapatos con Numeracion Estandar' data-position='top center')='Notas'
                   input(type='text' name='notas' readonly="readonly" value=produccion[0].notas)
-                //div(class=['ui','field'])
+                div(class=['ui','field'])
                   label(for='cliente')='Cliente'
                   select(name="cliente" onChange="MM_jumpMenu('parent',this,0)")
                     option(value="")=''
-                    each cliente in nomcliente
+                    //each cliente in nomcliente
                       option(value=cliente.nomcliente)=cliente.nomcliente
 
           div(class=['ui','four','fields'])

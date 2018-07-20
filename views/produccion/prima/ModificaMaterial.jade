@@ -1,4 +1,4 @@
-extends ../templates/default
+extends ../../templates/default
 
 
 block content
@@ -7,14 +7,14 @@ block content
   div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
     div(class=["ten", "wide", "column"])
       
-      h2(class=['ui', 'header', 'blue', "dividing"])= "Modificar Materia Prima"
+      h2(class=['ui', 'header', 'blue', "dividing"])= "Modificar Material"
       div(class=['ui','field'])
-        a(class="btn btn-primary", href="http://localhost:3000/users/prima" role="button")='Regresar'
+        a(class="btn btn-primary", href="http://localhost:3000/users/prima/material" role="button")='Regresar'
         a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Menu Principal'
       br
       br
-      div(class='form-nuevaprima')
-        form(class=['ui','form'] action='http://localhost:3000/users/prima/editarprima' method='post')
+      div(class='form-nuevamaterial')
+        form(class=['ui','form'] action='http://localhost:3000/users/prima/material/editarmaterial' method='post')
           div(class=['ui','two','fields'] )
                 div(class=['ui','field'])
                   label(for='codmaterial')='Codigo'
@@ -28,11 +28,11 @@ block content
                   input(type='text' name='color' placeholder='Color' value=prima[0].color maxlength='30')
                 div(class=['ui','field'])
                   label(for='metraje')='Metraje'
-                  input(type='text' name='metraje' placeholder='Metraje' value=prima[0].existencia maxlength='20') 
+                  input(type='text' name='metraje' placeholder='Metraje' value=prima[0].existencia maxlength='10') 
           div(class=['ui','field'])
             label(for='descripcion')='Descripcion'
             input(type='text' name='descripcion' placeholder='Descripcion' value=prima[0].descripcion maxlength='50')
           button(class=['ui','button','submit','blue'])= 'Modificar' 
           div(class=['ui','message','error'])
 
-    script(src='/javascripts/validacionPrima.js') 
+    script(src='/javascripts/validacionMaterial.js')

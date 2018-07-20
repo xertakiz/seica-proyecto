@@ -1,5 +1,15 @@
 $(function(){
-    $('.form-nuevaproduccion form').form({
+    $('.form-nuevaterminado form').form({
+
+        ticketpro : {
+            identifier : 'ticketpro',
+            rules : [
+                {
+                    type : 'empty',
+                    prompt : 'Por favor Ingrese un Ticket de Produccion'
+                }
+            ]
+        },
         
         modelo : {
             identifier : 'modelo',

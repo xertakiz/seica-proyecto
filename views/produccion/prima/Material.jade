@@ -1,0 +1,49 @@
+extends ../../templates/default
+
+
+block content
+  br
+  br
+  div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
+    div(class=["sixteen", "wide", "column"])
+      h2(class=['ui', 'header', 'blue', "dividing"])= "Lista de Materiales"
+      div(class=['ui','field'])
+        a(class="btn btn-primary" href="http://localhost:3000/users/prima/material/nuevo"  role="button")='Crear Material'
+        a(class="btn btn-primary" href="http://localhost:3000/users/prima" role="button")='Regresar'
+        a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Menu Principal'
+      br
+      form(class=['ui','form'] action='#' method='post') 
+        div(class=['ui','for','fields'])
+          div(class=['ui','field'])
+            input(type='text' name='codmaterial' placeholder='Codigo a Buscar' maxlength='4')
+          div(class=['ui','field'])
+            button(class=['ui','button','submit','blue'])='Buscar'
+        
+
+      
+      table(class=['ui','table', 'celled'] id='tbl-material')
+        thead
+          tr
+            th= 'Codigo'
+            th= 'Nombre'
+            th= 'Color'
+            th= 'Disponible'
+            th= 'Descripcion'
+            th= 'Acciones'
+        tbody
+          each producto in prima
+            tr
+              td(id='codmaterial')= producto.codmaterial
+              td= producto.nommaterial
+              td= producto.color
+              td= producto.existencia
+              td= producto.descripcion
+              td
+                a(class=['ui button basic icon'] href='#' data-inverted=''
+                data-tooltip='Eliminar' data-position='top center' id='btn-eliminar')
+                  i(class=['trash icon'])
+                a(class=['ui button basic icon'] href='http://localhost:3000/users/prima/material/modificarmaterial/'+producto.codmaterial data-inverted=''
+                data-tooltip='modificar' data-position='top center')
+                  i(class=['edit icon'])
+
+    script(src='/javascripts/material.js')

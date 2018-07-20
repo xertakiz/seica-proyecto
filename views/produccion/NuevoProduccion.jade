@@ -6,7 +6,7 @@ block content
   br
   br
   div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
-    div(class=["ten", "wide", "column"])
+    div(class=["eight", "wide", "column"])
       
       h2(class=['ui', 'header', 'blue', "dividing"])= "Nueva Produccion"
       div(class=['ui','field'])
@@ -20,19 +20,16 @@ block content
       div(class='form-nuevaproduccion')
         form(class=['ui','form'] action='http://localhost:3000/users/produccion/crearproduccion' method='post')
           div(class=['ui','four','fields'])
-                div(class=['ui','field'])
+                div(class=['ui',"hidden",'field'])
                   label(for='ticketpro')='Ticket'
-                  input(type='text' name='ticketpro' placeholder='Ticket' maxlength='4')
+                  input(type='text' name='ticketpro' readonly="readonly" placeholder='Ticket' maxlength='4')
                 div(class=['ui','field'])
                   label(for='modelo')='Modelo'
                   select(name="modelo" onChange="MM_jumpMenu('parent',this,0)")
                     option(value="" )=''
                     option(value="905P")='905P'
-                    option(value="905E")='905E'
-                    option(value="906P")='906p'
-                    option(value="906E")='906E'
+                    option(value="906P")='906P'
                     option(value="908P")='908P'
-                    option(value="908E")='908E' 
                 div(class=['ui','field'])
                   label(for='tcalzado')='Tipo de Calzado'
                   select(name="tcalzado" onChange="MM_jumpMenu('parent',this,0)")
@@ -45,20 +42,14 @@ block content
                   input(type='text' readonly="readonly" name='fechacrea' placeholder='Fecha de Creacion' maxlength='30')
           div(class=['ui','three','fields'])
                 div(class=['ui','field'])
-                  label(for='color1' data-inverted='' data-tooltip='Pala, Ojetera y Talon' data-position='top center')='Color 1'
+                  label(for='color1' data-inverted='' data-tooltip='Color Principal' data-position='top center')='Color 1'
                   select(name="color1" onChange="MM_jumpMenu('parent',this,0)")
                     option(value="" )=''
                     each colores in color
                       option(value=colores.color)=colores.color
                 div(class=['ui','field'])
-                  label(for='color2' data-inverted='' data-tooltip='Lengueta y Laterales' data-position='top center')='Color 2'
+                  label(for='color2' data-inverted='' data-tooltip='Adornos' data-position='top center')='Color 2'
                   select(name="color2" onChange="MM_jumpMenu('parent',this,0)")
-                    option(value="" )=''
-                    each colores in color
-                      option(value=colores.color)=colores.color
-                div(class=['ui','field'])
-                  label(for='color3' data-inverted='' data-tooltip='Adornos' data-position='top center')='Color 3'
-                  select(name="color3" onChange="MM_jumpMenu('parent',this,0)")
                     option(value="" )=''
                     each colores in color
                       option(value=colores.color)=colores.color
@@ -71,7 +62,7 @@ block content
                     option(value="15",par1)='15 Pares'
                     option(value="30")='30 Pares'
                     option(value="45")='45 Pares'
-                    option(value="60")='60 Pares'
+
                 div(class=['ui','field'])
                   label(for='notas' data-inverted='' data-tooltip='Grupo de Zapatos con Numeracion Estandar' data-position='top center')='Notas'
                   select(name="notas" onChange="MM_jumpMenu('parent',this,0)")
@@ -79,18 +70,18 @@ block content
                     option(value="1")='1 Nota'
                     option(value="2")='2 Notas'
                     option(value="3")='3 Notas'
-                    option(value="4")='4 notas'
 
-                //div(class=['ui','field'])
+
+                div(class=['ui','field'])
                   label(for='cliente')='Cliente'
                   select(name="cliente" onChange="MM_jumpMenu('parent',this,0)")
                     option(value="")=''
-                    each cliente in nomcliente
+                    //each cliente in nomcliente
                       option(value=cliente.nomcliente)=cliente.nomcliente
 
 
           h3(class=['ui', 'header', 'blue', "dividing"])= "Status Produccion"
-          div(class=['ui','five','fields'])
+          div(class=['ui','four','fields'])
             div(class=['ui','field'])
                 div(class=["ui", "left", "floated", "compact", "segment"])
                   div(class=["ui", "fitted", "toggle"])
@@ -125,6 +116,8 @@ block content
                       option(value="")=''
                       option(value=1)='Si'
 
+
+          div(class=['ui','four','fields'])
             div(class=['ui','field'])
                 div(class=["ui", "left", "floated", "compact", "segment"])
                   div(class=["ui", "fitted", "toggle"])
@@ -132,9 +125,7 @@ block content
                     select(name="soleteada" onChange="MM_jumpMenu('parent',this,0)")
                       option(value="")=''
                       option(value=1)='Si'
-
-          div(class=['ui','four','fields'])
-            div(class=['ui','field'])
+            
             div(class=['ui','field'])
                 div(class=["ui", "left", "floated", "compact", "segment"])
                   div(class=["ui", "fitted", "toggle"])

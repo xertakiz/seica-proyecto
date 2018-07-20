@@ -1,0 +1,56 @@
+extends ../../templates/default
+
+
+block content
+  br
+  br
+  div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
+    div(class=["sixteen", "wide", "column"])
+      h2(class=['ui', 'header', 'blue', "dividing"])= "Listado de Productos Terminados"
+      div(class=['ui','field'])
+        a(class="btn btn-primary" href="http://localhost:3000/users/terminado/nuevo" role="button")='Crear Productos Terminados'
+        a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Regresar'
+      br
+      br
+      form(class=['ui','form'] action='#' method='post') 
+        div(class=['ui','for','fields'])
+          div(class=['ui','field'])
+            input(type='text' name='codigo' placeholder='Codigo a Buscar' maxlength='4')
+          div(class=['ui','field'])
+            button(class=['ui','button','submit','blue'])='Buscar'
+
+      
+      table(class=['ui','table', 'celled'] id='tbl-terminados')
+        thead
+          tr
+            th= 'Codigo'
+            th= 'Ticket'
+            th= 'Calzado'
+            th= 'Modelo'
+            th(data-tooltip='Primer Color Princiapl, Segundo Color Adornos' data-position='top center')= 'Color'
+            th= 'Pares'
+            th= 'Notas'
+            th= 'Cliente'
+            th= 'Fecha Terminada'
+
+            th= 'Acciones'
+        tbody
+          each producto in terminados
+            tr
+              td(id='codterminado')= producto.codterminado
+              td= producto.ticketpro
+              td= producto.tcalzado
+              td= producto.modelo
+              td
+                p=producto.color1 +' / '+ producto.color2
+              td 
+                p= producto.pares
+              td= producto.notas
+              td= producto.nomcliente
+              td= producto.fechacomp
+              td
+                a(class=['ui button basic icon'] href='#' data-inverted=''
+                data-tooltip='Eliminar' data-position='top center' id='btn-eliminar')
+                  i(class=['trash icon'])
+
+    script(src='/javascripts/terminado.js')

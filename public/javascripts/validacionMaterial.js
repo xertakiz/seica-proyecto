@@ -1,5 +1,5 @@
 $(function(){
-    $('.form-nuevaprima form').form({
+    $('.form-nuevamaterial form').form({
         codmaterial : {
             identifier : 'codmaterial',
             rules : [

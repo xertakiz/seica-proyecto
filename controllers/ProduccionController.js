@@ -8,9 +8,9 @@ module.exports ={
 
         var db = mysql.createConnection(config);
         db.connect();
-
+        
         var produccion = null;
-        db.query('SELECT * FROM produccion', function(err,rows, fields){
+        db.query('SELECT * FROM `produccion` ORDER BY `produccion`.`ticketpro` DESC', function(err,rows, fields){
             if(err) throw err;
 
             produccion = rows
@@ -29,6 +29,7 @@ module.exports ={
         
         color = null;
         db.query('SELECT color FROM matprima', function(err,rows, fields){
+            
             if(err) throw err;
 
             color = rows
@@ -174,7 +175,6 @@ module.exports ={
             fechacrea : fecha,
             color1 : req.body.color1,
             color2 : req.body.color2,
-            color3 : req.body.color3,
             pares: req.body.pares,
             notas: req.body.notas,
             cliente: req.body.cliente,
@@ -393,7 +393,6 @@ module.exports ={
             fechacrea : req.body.fechacrea,
             color1 : req.body.color1,
             color2 : req.body.color2,
-            color3 : req.body.color3,
             pares: req.body.pares,
             notas: req.body.notas,
             cliente: req.body.cliente,
@@ -556,7 +555,6 @@ module.exports ={
             fechacrea : req.body.fechacrea,
             color1 : req.body.color1,
             color2 : req.body.color2,
-            color3 : req.body.color3,
             pares: req.body.pares,
             notas: req.body.notas,
             cliente: req.body.cliente,

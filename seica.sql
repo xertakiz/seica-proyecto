@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-07-2018 a las 05:40:51
+-- Tiempo de generación: 20-07-2018 a las 08:20:49
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 5.6.36
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `clientes` (
   `codcliente` varchar(10) NOT NULL,
-  `nomcliente` varchar(35) NOT NULL,
+  `cliente` varchar(35) NOT NULL,
   `ciucliente` varchar(30) NOT NULL,
   `estcliente` varchar(30) NOT NULL,
   `telefono` int(11) NOT NULL
@@ -40,9 +40,29 @@ CREATE TABLE `clientes` (
 -- Volcado de datos para la tabla `clientes`
 --
 
-INSERT INTO `clientes` (`codcliente`, `nomcliente`, `ciucliente`, `estcliente`, `telefono`) VALUES
+INSERT INTO `clientes` (`codcliente`, `cliente`, `ciucliente`, `estcliente`, `telefono`) VALUES
 ('21535032', 'DANNY LARA', 'CARACAS', 'DISTRITO CAPITAL', 2147483647),
 ('404026045', 'CREACIONES MARIA TERESA LARA C.A', 'CARACAS', 'DISTRITO CAPITAL', 2128724054);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `matplanta`
+--
+
+CREATE TABLE `matplanta` (
+  `codplanta` varchar(20) NOT NULL,
+  `nomplanta` varchar(30) NOT NULL,
+  `existencia` int(11) NOT NULL,
+  `descripcion` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `matplanta`
+--
+
+INSERT INTO `matplanta` (`codplanta`, `nomplanta`, `existencia`, `descripcion`) VALUES
+('PUN901', 'PUNTA DEPORTIVA NIÑO', 4500, 'PLANTA COMPRADA A NEW SUELA CON NUMERACION ESTANDAR');
 
 -- --------------------------------------------------------
 
@@ -63,7 +83,9 @@ CREATE TABLE `matprima` (
 --
 
 INSERT INTO `matprima` (`codmaterial`, `nommaterial`, `color`, `existencia`, `descripcion`) VALUES
+('SIM_BLANCO_MARFIL', 'BLANCO_MARFIL', 'BLANCO_M', 23.6, 'COLOR BLANCO MARFIL COMPRADO EN NINFA  EL 19/07/18'),
 ('SIM_NEGRO_RAYADO', 'NEGRO_RAYADO', 'NG_RY', 74.5, 'NEGRO RAYADO DE PRIMERA'),
+('SIM_ROJO', 'ROJO SINTETICO', 'ROJO_SIN', 88, 'MATERIAL COMPRADO EN NINFA'),
 ('SIM_ROJO_CUERITO', 'ROJO CUERITO', 'ROJO_C', 90.5, 'MATERIAL DE PRIMERA COMPRADO EN NINFA 07-07-2018');
 
 -- --------------------------------------------------------
@@ -80,7 +102,6 @@ CREATE TABLE `produccion` (
   `cliente` varchar(35) DEFAULT NULL,
   `color1` varchar(30) NOT NULL,
   `color2` varchar(30) NOT NULL,
-  `color3` varchar(30) NOT NULL,
   `pares` int(11) NOT NULL,
   `notas` int(11) NOT NULL,
   `status` varchar(30) NOT NULL,
@@ -104,13 +125,36 @@ CREATE TABLE `produccion` (
 -- Volcado de datos para la tabla `produccion`
 --
 
-INSERT INTO `produccion` (`ticketpro`, `tcalzado`, `fechacrea`, `modelo`, `cliente`, `color1`, `color2`, `color3`, `pares`, `notas`, `status`, `cortada`, `fechacort`, `marcada`, `fechamarca`, `costura`, `fechacost`, `montura`, `fechamon`, `soleteada`, `fechasole`, `encajada`, `fechaenca`, `completado`, `fechacomp`) VALUES
-(4545, 'DAMA', '2018-07-14', '905P', 'DANNY LARA', 'NEGRO', 'NEGRO', 'NEGRO', 15, 1, 'CORTADO', 1, '2018-07-14', NULL, '0000-00-00', NULL, '0000-00-00', NULL, '0000-00-00', NULL, '0000-00-00', NULL, '0000-00-00', NULL, '0000-00-00'),
-(5453, 'DAMA', '2018-07-14', '905P', 'DANNY LARA', 'NEGRO', 'NEGRO', 'NEGRO', 15, 1, 'COMPLETADO', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14'),
-(5555, 'DAMA', '2018-07-13', '905P', 'DANNY LARA', 'NEGRO', 'NEGRO', 'NEGRO', 15, 1, 'COSTUREADO', 1, '2018-07-13', 1, '2018-07-13', 1, '2018-07-13', NULL, '0000-00-00', NULL, '0000-00-00', NULL, '0000-00-00', NULL, '0000-00-00'),
-(6666, 'DAMA', '2018-07-13', '905P', 'DANNY LARA', 'NEGRO', 'NEGRO', 'NEGRO', 15, 1, 'COMPLETADO', 1, '2018-07-13', 1, '2018-07-13', 1, '2018-07-13', 1, '2018-07-13', 1, '2018-07-13', 1, '2018-07-13', 1, '2018-07-13'),
-(7777, 'DAMA', '2018-07-14', '905P', 'DANNY LARA', 'NEGRO', 'NEGRO', 'NEGRO', 15, 1, 'COMPLETADO', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', NULL, '0000-00-00'),
-(8885, 'DAMA', '2018-07-14', '905P', 'DANNY LARA', 'NEGRO', 'NEGRO', 'NEGRO', 15, 1, 'COMPLETADO', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14', 1, '2018-07-14');
+INSERT INTO `produccion` (`ticketpro`, `tcalzado`, `fechacrea`, `modelo`, `cliente`, `color1`, `color2`, `pares`, `notas`, `status`, `cortada`, `fechacort`, `marcada`, `fechamarca`, `costura`, `fechacost`, `montura`, `fechamon`, `soleteada`, `fechasole`, `encajada`, `fechaenca`, `completado`, `fechacomp`) VALUES
+(1000, 'DAMA', '2018-07-19', '905E', '', 'BLANCO_M', 'BLANCO_M', 15, 1, 'COSTUREADO', 1, '2018-07-20', 1, '2018-07-20', 1, '2018-07-20', 0, '0000-00-00', 0, '0000-00-00', 0, '0000-00-00', 0, '0000-00-00'),
+(1001, 'DAMA', '2018-07-19', '905P', '', 'BLANCO_M', 'BLANCO_M', 15, 1, 'COMPLETADO', 1, '2018-07-19', 1, '2018-07-19', 1, '2018-07-19', 1, '2018-07-19', 1, '2018-07-19', 1, '2018-07-19', 1, '2018-07-19');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `terminado`
+--
+
+CREATE TABLE `terminado` (
+  `codterminado` int(11) NOT NULL,
+  `ticketpro` int(11) NOT NULL,
+  `tcalzado` varchar(10) NOT NULL,
+  `modelo` varchar(15) NOT NULL,
+  `color1` varchar(30) NOT NULL,
+  `color2` varchar(30) NOT NULL,
+  `pares` int(11) NOT NULL,
+  `notas` int(11) NOT NULL,
+  `fechacomp` date NOT NULL,
+  `cliente` varchar(35) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `terminado`
+--
+
+INSERT INTO `terminado` (`codterminado`, `ticketpro`, `tcalzado`, `modelo`, `color1`, `color2`, `pares`, `notas`, `fechacomp`, `cliente`) VALUES
+(1, 9000, 'DAMA', '905P', 'BLANCO', 'ROJO', 15, 1, '2018-07-19', NULL),
+(3, 100, 'DAMA', '905P', 'BLANCO_M', 'BLANCO_M', 15, 1, '2018-07-19', '');
 
 -- --------------------------------------------------------
 
@@ -146,6 +190,12 @@ ALTER TABLE `clientes`
   ADD PRIMARY KEY (`codcliente`);
 
 --
+-- Indices de la tabla `matplanta`
+--
+ALTER TABLE `matplanta`
+  ADD PRIMARY KEY (`codplanta`);
+
+--
 -- Indices de la tabla `matprima`
 --
 ALTER TABLE `matprima`
@@ -158,10 +208,32 @@ ALTER TABLE `produccion`
   ADD PRIMARY KEY (`ticketpro`);
 
 --
+-- Indices de la tabla `terminado`
+--
+ALTER TABLE `terminado`
+  ADD PRIMARY KEY (`codterminado`);
+
+--
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`cedula`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `produccion`
+--
+ALTER TABLE `produccion`
+  MODIFY `ticketpro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1002;
+
+--
+-- AUTO_INCREMENT de la tabla `terminado`
+--
+ALTER TABLE `terminado`
+  MODIFY `codterminado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

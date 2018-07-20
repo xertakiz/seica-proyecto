@@ -1,4 +1,4 @@
-extends ../templates/default
+extends ../../templates/default
 
 
 block content
@@ -9,12 +9,12 @@ block content
       
       h2(class=['ui', 'header', 'blue', "dividing"])= "Nueva Materia Prima"
       div(class=['ui','field'])
-        a(class="btn btn-primary", href="http://localhost:3000/users/prima" role="button")='Regresar'
+        a(class="btn btn-primary", href="http://localhost:3000/users/prima/material" role="button")='Regresar'
         a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Menu Principal'
       br
       br
-      div(class='form-nuevaprima')
-        form(class=['ui','form'] action='http://localhost:3000/users/prima/crearprima' method='post')
+      div(class='form-nuevamaterial')
+        form(class=['ui','form'] action='http://localhost:3000/users/prima/material/crearmaterial' method='post')
           div(class=['ui','two','fields'] )
                 div(class=['ui','field'])
                   label(for='codmaterial')='Codigo'
@@ -28,7 +28,7 @@ block content
                   input(type='text' name='color' placeholder='Color' maxlength='30')
                 div(class=['ui','field'])
                   label(for='metraje')='Metraje'
-                  input(type='text' name='metraje' placeholder='Metraje' maxlength='20') 
+                  input(type='text' name='metraje' placeholder='Metraje' maxlength='10') 
           div(class=['ui','field'])
             label(for='descripcion')='Descripcion'
             input(type='text' name='descripcion' placeholder='Descripcion' maxlength='50')
@@ -37,7 +37,7 @@ block content
       if info != undefined
         div(class=['ui','message','success'])
           i(class=['close','icon'])
-          div(class=['header'])= 'Materia Prima Registrado'
+          div(class=['header'])= 'Crear Nuevo Material'
           p= info
 
-    script(src='/javascripts/validacionPrima.js') 
+    script(src='/javascripts/validacionMaterial.js') 
