@@ -1,0 +1,40 @@
+extends ../../templates/default
+
+
+block content
+  br
+  br
+  div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
+    div(class=["ten", "wide", "column"])
+      
+      h2(class=['ui', 'header', 'blue', "dividing"])= "Buscar Material"
+      div(class=['ui','field'])
+        a(class="btn btn-primary", href="http://localhost:3000/users/prima/material" role="button")='Regresar'
+        a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Menu Principal'
+      br
+      br
+      div(class='form-nuevamaterial')
+        form(class=['ui','form'] action='#' method='post')
+          div(class=['ui','two','fields'] )
+                div(class=['ui','field'])
+                  label(for='codmaterial')='Codigo'
+                  input(type='text' readonly="readonly" name='codmaterial' placeholder='Codigo' value=prima[0].codmaterial maxlength='20')
+                div(class=['ui','field'])
+                    a(class=['ui button basic icon'] href='http://localhost:3000/users/prima/material/modificarmaterial/'+prima[0].codmaterial data-inverted=''
+                    data-tooltip='modificar' data-position='top center')
+                        i(class=['edit icon'])
+          div(class=['ui','for','fields'] )    
+                div(class=['ui','field'])
+                  label(for='nombre')='Nombre'
+                  input(type='text' name='nombre' readonly="readonly" placeholder='Nombre' value=prima[0].nommaterial maxlength='30')
+          
+                div(class=['ui','field'])
+                  label(for='color')='Color'
+                  input(type='text' name='color' readonly="readonly" placeholder='Color' value=prima[0].color maxlength='30')
+                div(class=['ui','field'])
+                  label(for='metraje')='Metraje'
+                  input(type='text' name='metraje' readonly="readonly" placeholder='Metraje' value=prima[0].existencia maxlength='10') 
+          div(class=['ui','field'])
+            label(for='descripcion')='Descripcion'
+            input(type='text' name='descripcion' readonly="readonly" placeholder='Descripcion' value=prima[0].descripcion maxlength='50')
+

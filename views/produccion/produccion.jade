@@ -12,13 +12,18 @@ block content
         a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Regresar'
       br
       br
-      form(class=['ui','form'] action='#' method='post') 
+      form(class=['ui','form'] action='http://localhost:3000/users/produccion' method='post') 
         div(class=['ui','for','fields'])
           div(class=['ui','field'])
-            input(type='text' name='ticketpro' placeholder='Ticket a Buscar' maxlength='4')
+            input(type='text' name='ticket' placeholder='Ticket a Buscar' maxlength='4')
           div(class=['ui','field'])
             button(class=['ui','button','submit','blue'])='Buscar'
-          
+      if info != undefined
+        div(class=['ui','message','success'])
+          i(class=['close','icon'])
+          div(class=['header'])= 'Error en Busqueda'
+          p= info
+
       
       table(class=['ui','table', 'celled'] id='tbl-produccion')
         thead

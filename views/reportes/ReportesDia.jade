@@ -1,0 +1,66 @@
+extends ../templates/default
+
+
+block content
+  br
+  br
+  div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
+    div(class=["eleven", "wide", "column"])
+      h2(class=['ui', 'header', 'blue', "dividing"])= "Cortada Diaria"
+      div(class=['ui','field'])
+        a(class="btn btn-primary" href="http://localhost:3000/users/reportes" role="button")='Regresar'
+        a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Menu Principal'
+      br
+      br
+      form(class=['ui','form'] action='http://localhost:3000/users/reportes/reportesdia' method='post') 
+        div(class=['ui','for','fields'])
+          div(class=['ui','field'])
+            input(type='text' name='ticket' placeholder='Ticket a Buscar' maxlength='4')
+          div(class=['ui','field'])
+            button(class=['ui','button','submit','blue'])='Buscar'
+      if info != undefined
+        div(class=['ui','message','success'])
+          i(class=['close','icon'])
+          div(class=['header'])= 'Error en Busqueda'
+          p= info
+
+      
+      table(class=['ui','table', 'celled'] id='tbl-reportesdia')
+        thead
+          tr
+            th= 'Ticket'
+            th= 'Calzado'
+            th= 'Modelo'
+            th= 'Color'
+            th= 'Pares'
+            th= 'Notas'
+            th= 'Fecha Cortada'
+
+        tbody
+          each producc in produccion
+            tr
+              td(id='ticketpro')= producc.ticketpro
+              td= producc.tcalzado
+              td= producc.modelo
+              td
+                p=producc.color1 +' / '+ producc.color2
+              td= producc.pares
+              td= producc.notas
+              td= producc.fechacort
+
+            
+    div(class='form-nuevaproduccion')
+        form(class=['ui','form'] action='http://localhost:3000/users/produccion/crearproduccion' method='post')     
+            div(class=['ui','for','fields'])
+                div(class=['ui','field'])
+                    label(for='tpares')='Total de Pares'
+                    input(type='text' name=''  placeholder='Ticket a Buscar' maxlength='20')
+                div(class=['ui','field'])
+                    label(for='tpares')='Total de Notas'
+                    input(type='text' name=''  placeholder='Ticket a Buscar' maxlength='20')
+                    
+                    
+            
+
+
+    script(src='/javascripts/produccion.js')

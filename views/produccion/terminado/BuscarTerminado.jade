@@ -1,0 +1,58 @@
+extends ../../templates/default
+
+
+block content
+  
+  br
+  br
+  div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
+    div(class=["eight", "wide", "column"])
+      
+      h2(class=['ui', 'header', 'blue', "dividing"])= "Nuevo Terminado"
+      div(class=['ui','field'])
+        a(class="btn btn-primary", href="http://localhost:3000/users/terminado" role="button")='Regresar'
+        a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Menu Principal'
+      br
+      br
+      div(class='form-nuevaterminado')
+        form(class=['ui','form'] action='' method='post')
+          
+          div(class=['ui','four','fields'])
+                div(class=['ui','field'])
+                  label(for='codterminado')='Codigo Terminado'
+                  input(type='text' name='codterminado' readonly="readonly" value=terminados[0].codterminado maxlength='4')
+                div(class=['ui','field'])
+                  a(class=['ui button basic icon'] href='http://localhost:3000/users/terminado/modificarterminado/'+terminados[0].codterminado data-inverted=''
+                  data-tooltip='Modificar' data-position='top center')
+                    i(class=['edit icon'])
+          div(class=['ui','four','fields'])
+                div(class=['ui','field'])
+                  label(for='ticketpro')='Ticket'
+                  input(type='text' name='ticketpro' readonly="readonly" value=terminados[0].ticketpro maxlength='4')
+                div(class=['ui','field'])
+                  label(for='modelo')='Modelo'
+                  input(type='text' name='modelo' readonly="readonly" value=terminados[0].modelo placeholder='Ticket' maxlength='10')
+                div(class=['ui','field'])
+                  label(for='tcalzado')='Tipo de Calzado'
+                  input(type='text' name='tcalzado' readonly="readonly" value=terminados[0].tcalzado maxlength='20')
+                div(class=['ui','field'])
+                  label(for='fechacomp')='Fecha de Completado'
+                  input(type='text' readonly="readonly" name='fechacomp' value=terminados[0].fechacomp  maxlength='30')
+          div(class=['ui','three','fields'])
+                div(class=['ui','field'])
+                  label(for='color1' data-inverted='' data-tooltip='Color Principal' data-position='top center')='Color 1'
+                  input(type='text' name='color1' readonly="readonly" value=terminados[0].color1 maxlength='20')
+                div(class=['ui','field'])
+                  label(for='color2' data-inverted='' data-tooltip='Adornos' data-position='top center')='Color 2'
+                  input(type='text' name='color2' readonly="readonly" value=terminados[0].color2 maxlength='20')
+          div(class=['ui','three','fields'])
+                div(class=['ui','field'])
+                  label(for='pares')='Pares'
+                  input(type='text' name='pares' readonly="readonly" value=terminados[0].pares maxlength='20')
+                div(class=['ui','field'])
+                  label(for='notas' data-inverted='' data-tooltip='Grupo de Zapatos con Numeracion Estandar' data-position='top center')='Notas'
+                  input(type='text' name='notas' readonly="readonly" value=terminados[0].notas maxlength='20')
+                div(class=['ui','field'])
+                  label(for='cliente')='Cliente'
+                  input(type='text' name='cliente' readonly="readonly" value=terminados[0].cliente maxlength='30')
+                  

@@ -12,12 +12,17 @@ block content
         a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Regresar'
       br
       br
-      form(class=['ui','form'] action='#' method='post') 
+      form(class=['ui','form'] action='http://localhost:3000/users/terminado' method='post') 
         div(class=['ui','for','fields'])
           div(class=['ui','field'])
-            input(type='text' name='codigo' placeholder='Codigo a Buscar' maxlength='4')
+            input(type='text' name='ticket' placeholder='Ticket a Buscar' maxlength='4')
           div(class=['ui','field'])
             button(class=['ui','button','submit','blue'])='Buscar'
+      if info != undefined
+        div(class=['ui','message','success'])
+          i(class=['close','icon'])
+          div(class=['header'])= 'Error en Busqueda'
+          p= info
 
       
       table(class=['ui','table', 'celled'] id='tbl-terminados')
@@ -31,7 +36,7 @@ block content
             th= 'Pares'
             th= 'Notas'
             th= 'Cliente'
-            th= 'Fecha Terminada'
+            th= 'Fecha Culminada'
 
             th= 'Acciones'
         tbody
@@ -46,11 +51,14 @@ block content
               td 
                 p= producto.pares
               td= producto.notas
-              td= producto.nomcliente
+              td= producto.cliente
               td= producto.fechacomp
               td
                 a(class=['ui button basic icon'] href='#' data-inverted=''
                 data-tooltip='Eliminar' data-position='top center' id='btn-eliminar')
                   i(class=['trash icon'])
+                a(class=['ui button basic icon'] href='http://localhost:3000/users/terminado/modificarterminado/'+producto.codterminado data-inverted=''
+                data-tooltip='Modificar' data-position='top center')
+                  i(class=['edit icon'])
 
     script(src='/javascripts/terminado.js')

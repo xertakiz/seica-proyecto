@@ -34,6 +34,7 @@ module.exports = function(passport){
                         nombre : user.nombre,
                         apellido : user.apellido,
 						usuario : user.usuario
+						
 					});
 				}
 			}

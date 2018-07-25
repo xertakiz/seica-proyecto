@@ -1,6 +1,33 @@
 var mysql = require('mysql');
 var dateFormat = require('dateformat');
 
+
+
+function clientebd(req, res, next){
+    var config = require('.././database/config');
+    var db = mysql.createConnection(config);
+    db.connect();
+    var cliente=null;
+    db.query('SELECT cliente FROM clientes', function (err, rows, fields) {
+                if (err) throw err;
+                cliente = rows
+                db.end();    
+                return cliente
+    });
+}
+
+
+var config = require('.././database/config');
+var db = mysql.createConnection(config);
+db.connect();
+var produccio = null;
+db.query('SELECT * FROM `produccion` ORDER BY `produccion`.`ticketpro` DESC', function(err,rows, fields){
+    if(err) throw err;
+
+    produccio = rows
+    db.end();
+});
+
 // Controladores de Produccion
 module.exports ={
     getProduccion : function(req, res, next){
@@ -20,10 +47,34 @@ module.exports ={
                 user : req.user})
         });
     },
+    postBuscarProduccion: function (req,res, ticket){
+
+        var codigo = req.body.ticket;
+        var config = require('.././database/config');
+
+        var db = mysql.createConnection(config);
+        db.connect();
+        var produccion = null;
+        db.query('SELECT * FROM produccion WHERE ticketpro = ?', codigo, function (err, rows, fields) {
+            if (err) throw err;
+            produccion = rows;
+            db.end();
+
+            if (produccion.length > 0) {
+                res.render('produccion/BuscarProduccion', {produccion: produccion, isAuthenticated : req.isAuthenticated(),
+                    user : req.user});
+
+            }
+            else {
+                res.render('produccion/produccion',{info:'Ticket no Encontrado',produccion : produccio, isAuthenticated : req.isAuthenticated(),
+                user : req.user})
+            }
+        }); 
+    },
+
     getNuevoProduccion: function(req,res,next){
 
         var config = require('.././database/config');
-
         var db = mysql.createConnection(config);
         db.connect();
         
@@ -35,24 +86,10 @@ module.exports ={
             color = rows
             
             db.end();
+
             res.render('produccion/NuevoProduccion',{isAuthenticated : req.isAuthenticated(),
                 user : req.user,color});
         });
-        
-        
-        /*nomcliente = null;
-        db.query('SELECT nomcliente FROM clientes', function(err,rows, fields){
-            console.log(nomcliente)
-            if(err) throw err;
-            
-            nomcliente = rows
-            db.end();
-
-            res.render('produccion/NuevoProduccion',{isAuthenticated : req.isAuthenticated(),
-                user : req.user,nomcliente});
-        });
-        */
-
     },
     postNuevoProduccion: function(req,res,next){
       
@@ -61,76 +98,27 @@ module.exports ={
         
         var fechacort;
         var cort = req.body.cortada;
-            if(cort == 1){
-                fechacort = fecha
-
-            }
-            else{
-            fechacort= ''
-            }
 
         var fechamarca;
         var marc = req.body.marcada
-            if(marc == 1){
-
-                fechamarca = fecha
-            }
-            else{
-            fechamarca= ''
-            }
 
         var fechacost;
         var cost = req.body.costura;
-            if(cost == 1){
-
-                fechacost = fecha
-            }
-            else{
-            fechacost= ''
-            }
 
         var fechamon;
         var mont = req.body.montura;
-            if(mont == 1){
-
-                fechamon = fecha
-            }
-            else{
-            fechamon= ''
-            }
 
         var fechasole;
         var sole = req.body.soleteada;
-            if(sole == 1){
-
-                fechasole = fecha
-            }
-            else{
-            fechasole= ''
-            }
 
         var fechaenca;
         var enca = req.body.encajada;
-            if(enca == 1){
-
-                fechaenca = fecha
-            }
-            else{
-            fechaenca= ''
-            }
 
         var fechacomp;
         var comp = req.body.completado;
-            if(comp == 1){
 
-                fechacomp = fecha
-            }
-            else{
-            fechacomp= ''
-            }
 
         var status;
-
         var corta;
         var marca;
         var costu;
@@ -139,9 +127,16 @@ module.exports ={
         var encaja;
         var comple;
 
-        if(cort  == 1){
+        if(cort == 1){
             status = 'CORTADO'
             corta = 1;
+            if(corta == 1){
+                fechacort = fecha
+
+            }
+            else{
+            fechacort= ''
+            }
         }
         else{
             status = 'CREADO'
@@ -149,23 +144,65 @@ module.exports ={
         if(cort & marc  == 1){
             status = 'MARCADO'
             marca = 1;
+            if(marca == 1){
+
+                fechamarca = fecha
+            }
+            else{
+            fechamarca= ''
+            }
         }
         if(cort & marc & cost == 1){
             status = 'COSTUREADO'
             costu = 1;
+            if(costu == 1){
+
+                fechacost = fecha
+            }
+            else{
+            fechacost= ''
+            }
         }
         if(cort & marc & cost & mont == 1){
             status = 'MONTADO'
             montu = 1;
+            if(montu == 1){
+
+                fechamon = fecha
+            }
+            else{
+            fechamon= ''
+            }
         }
         if(cort & marc & cost & mont & sole == 1){
             status = 'SOLETEADO'
             solete = 1;
+            if(solete == 1){
+
+                fechasole = fecha
+            }
+            else{
+            fechasole= ''
+            }
         }
         if(cort & marc & cost & mont & sole & enca == 1){
             status = 'COMPLETADO'
             encaja = 1;
             comple = 1;
+            if(encaja == 1){
+
+                fechaenca = fecha
+            }
+            else{
+            fechaenca= ''
+            }
+            if(comple == 1){
+
+                fechacomp = fecha
+            }
+            else{
+            fechacomp= ''
+            }
         }
 
         var produccion = {
@@ -200,24 +237,6 @@ module.exports ={
         var db = mysql.createConnection(config);
         db.connect();
         
-
-      /*  col1 = body.color1
-        col2 = body.color2
-        col3 = body.color3
-
-        var prima = {
-            existencia : resta,
-        };
-
-
-        db.query('UPDATE matprima SET ? WHERE?', [prima,{existencia : existencia}], function(err,rows,fields){
-            if(err)throw err;
-            prima = rows;
-            db.end();
-
-        });
-        */
-
         db.query('INSERT INTO produccion SET?', produccion, function(err,rows,fields){
             if(err) throw err;
         });
@@ -256,30 +275,6 @@ module.exports ={
                 user : req.user});
         });
 
-    /*    color = null;
-        db.query('SELECT color FROM matprima', function(err,rows, fields){
-            if(err) throw err;
-
-            color = rows
-            
-            db.end();
-            res.render('produccion/NuevoProduccion',{isAuthenticated : req.isAuthenticated(),
-                user : req.user,color});
-        });
-    */
-        /*nomcliente = null;
-        db.query('SELECT nomcliente FROM clientes', function(err,rows, fields){
-            console.log(nomcliente)
-            if(err) throw err;
-            
-            nomcliente = rows
-            db.end();
-
-            res.render('produccion/NuevoProduccion',{isAuthenticated : req.isAuthenticated(),
-                user : req.user,nomcliente});
-        });
-        */
-
     },
     postModificarProduccion :function(req,res,next){
         var fechaactual = new Date();
@@ -287,64 +282,22 @@ module.exports ={
         
         var fechacort;
         var cort = req.body.cortada;
-            if(cort == 1){
-                fechacort = fecha
 
-            }
-            else{
-            fechacort= ''
-            }
+        var fechamarca;
+        var marc = req.body.marcada
 
-            var fechamarca;
-            var marc = req.body.marcada
-                if(marc == 1){
-    
-                    fechamarca = fecha
-                }
-                else{
-                fechamarca= ''
-                }
-    
-            var fechacost;
-            var cost = req.body.costura;
-                if(cost == 1){
-    
-                    fechacost = fecha
-                }
-                else{
-                fechacost= ''
-                }
-    
+        var fechacost;
+        var cost = req.body.costura;
+
             var fechamon;
             var mont = req.body.montura;
-                if(mont == 1){
-    
-                    fechamon = fecha
-                }
-                else{
-                fechamon= ''
-                }
-    
+
             var fechasole;
             var sole = req.body.soleteada;
-                if(sole == 1){
-    
-                    fechasole = fecha
-                }
-                else{
-                fechasole= ''
-                }
-    
+
             var fechaenca;
             var enca = req.body.encajada;
-                if(enca == 1){
-    
-                    fechaenca = fecha
-                }
-                else{
-                fechaenca= ''
-                }
-    
+
             var fechacomp;
             var comp = req.body.completado;
                 if(comp == 1){
@@ -444,107 +397,121 @@ module.exports ={
         });
     },
     postModificarStatus :function(req,res,next){
+      
         var fechaactual = new Date();
         var fecha = dateFormat(fechaactual, 'yyyy-mm-dd');
         
         var fechacort;
         var cort = req.body.cortada;
-            if(cort == 1){
-                fechacort = fecha
 
+        var fechamarca;
+        var marc = req.body.marcada
+
+        var fechacost;
+        var cost = req.body.costura;
+
+        var fechamon;
+        var mont = req.body.montura;
+
+        var fechasole;
+        var sole = req.body.soleteada;
+
+        var fechaenca;
+        var enca = req.body.encajada;
+
+        var fechacomp;
+        var comp = req.body.completado;
+
+
+        var status;
+        var corta;
+        var marca;
+        var costu;
+        var montu;
+        var solete;
+        var encaja;
+        var comple;
+
+        if(cort == 1){
+            status = 'CORTADO'
+            corta = 1;
+            if(corta == 1){
+                if(req.body.fechacortada == produccion[0].fechacort){
+                    fechacort= req.body.fechacortada
+                }
+                else{
+                    fechacort= fecha
+                }
+            }
+            
+        }
+        else{
+            status = 'CREADO'
+        }
+        if(cort & marc  == 1){
+            status = 'MARCADO'
+            marca = 1;
+            if(marca == 1){
+                if(req.body.fechamarcada == produccion[0].fechamarca){
+                    fechamarca= req.body.fechamarcada
+                }
+                else{
+                    fechamarca= fecha
+                }
+            }
+        }
+        if(cort & marc & cost == 1){
+            status = 'COSTUREADO'
+            costu = 1;
+            if(costu == 1){
+
+                fechacost = fecha
             }
             else{
-            fechacort= ''
+            fechacost= ''
             }
+        }
+        if(cort & marc & cost & mont == 1){
+            status = 'MONTADO'
+            montu = 1;
+            if(montu == 1){
 
-            var fechamarca;
-            var marc = req.body.marcada
-                if(marc == 1){
-    
-                    fechamarca = fecha
-                }
-                else{
-                fechamarca= ''
-                }
-    
-            var fechacost;
-            var cost = req.body.costura;
-                if(cost == 1){
-    
-                    fechacost = fecha
-                }
-                else{
-                fechacost= ''
-                }
-    
-            var fechamon;
-            var mont = req.body.montura;
-                if(mont == 1){
-    
-                    fechamon = fecha
-                }
-                else{
-                fechamon= ''
-                }
-    
-            var fechasole;
-            var sole = req.body.soleteada;
-                if(sole == 1){
-    
-                    fechasole = fecha
-                }
-                else{
-                fechasole= ''
-                }
-    
-            var fechaenca;
-            var enca = req.body.encajada;
-                if(enca == 1){
-    
-                    fechaenca = fecha
-                }
-                else{
-                fechaenca= ''
-                }
-    
-            var fechacomp;
-            var comp = req.body.completado;
-                if(comp == 1){
-                    
-                    fechacomp = fecha
-                }
-                else{
-                fechacomp= ''
-                }
-            
-                if(cort  == 1){
-                    status = 'CORTADO'
-                    corta = 1;
-                }
-                else{
-                    status = 'CREADO'
-                }
-                if(cort & marc  == 1){
-                    status = 'MARCADO'
-                    marca = 1;
-                }
-                if(cort & marc & cost == 1){
-                    status = 'COSTUREADO'
-                    costu = 1;
-                }
-                if(cort & marc & cost & mont == 1){
-                    status = 'MONTADO'
-                    montu = 1;
-                }
-                if(cort & marc & cost & mont & sole == 1){
-                    status = 'SOLETEADO'
-                    solete = 1;
-                }
-                if(cort & marc & cost & mont & sole & enca == 1){
-                    status = 'COMPLETADO'
-                    encaja = 1;
-                    comple = 1;
-                }
+                fechamon = fecha
+            }
+            else{
+            fechamon= ''
+            }
+        }
+        if(cort & marc & cost & mont & sole == 1){
+            status = 'SOLETEADO'
+            solete = 1;
+            if(solete == 1){
+
+                fechasole = fecha
+            }
+            else{
+            fechasole= ''
+            }
+        }
+        if(cort & marc & cost & mont & sole & enca == 1){
+            status = 'COMPLETADO'
+            encaja = 1;
+            comple = 1;
+            if(encaja == 1){
+
+                fechaenca = fecha
+            }
+            else{
+            fechaenca= ''
+            }
+            if(comple == 1){
+
+                fechacomp = fecha
+            }
+            else{
+            fechacomp= ''
+            }
+        }
         
     
         

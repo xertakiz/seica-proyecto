@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-07-2018 a las 08:20:49
+-- Tiempo de generación: 25-07-2018 a las 07:48:08
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 5.6.36
 
@@ -126,8 +126,11 @@ CREATE TABLE `produccion` (
 --
 
 INSERT INTO `produccion` (`ticketpro`, `tcalzado`, `fechacrea`, `modelo`, `cliente`, `color1`, `color2`, `pares`, `notas`, `status`, `cortada`, `fechacort`, `marcada`, `fechamarca`, `costura`, `fechacost`, `montura`, `fechamon`, `soleteada`, `fechasole`, `encajada`, `fechaenca`, `completado`, `fechacomp`) VALUES
-(1000, 'DAMA', '2018-07-19', '905E', '', 'BLANCO_M', 'BLANCO_M', 15, 1, 'COSTUREADO', 1, '2018-07-20', 1, '2018-07-20', 1, '2018-07-20', 0, '0000-00-00', 0, '0000-00-00', 0, '0000-00-00', 0, '0000-00-00'),
-(1001, 'DAMA', '2018-07-19', '905P', '', 'BLANCO_M', 'BLANCO_M', 15, 1, 'COMPLETADO', 1, '2018-07-19', 1, '2018-07-19', 1, '2018-07-19', 1, '2018-07-19', 1, '2018-07-19', 1, '2018-07-19', 1, '2018-07-19');
+(1000, 'DAMA', '2018-07-19', '905E', '', 'BLANCO_M', 'BLANCO_M', 15, 1, 'COMPLETADO', 1, '2018-07-21', 1, '2018-07-21', 1, '2018-07-21', 1, '2018-07-21', 1, '2018-07-21', 1, '2018-07-21', 1, '2018-07-21'),
+(1001, 'DAMA', '2018-07-19', '905P', '', 'BLANCO_M', 'BLANCO_M', 15, 1, 'COMPLETADO', 1, '2018-07-22', 1, '2018-07-22', 1, '2018-07-22', 1, '2018-07-22', 1, '2018-07-22', 1, '2018-07-22', 1, '2018-07-22'),
+(1002, 'DAMA', '2018-07-22', '905P', '', 'ROJO_SIN', 'NG_RY', 15, 1, 'CORTADO', 1, NULL, 0, NULL, 0, NULL, 0, NULL, 0, NULL, 0, NULL, 0, '0000-00-00'),
+(1003, 'DAMA', '2018-07-23', '905P', '', 'BLANCO_M', 'NG_RY', 15, 1, 'MARCADO', 1, '2018-07-23', 1, '2018-07-24', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1004, 'DAMA', '2018-07-25', '905P', '', 'BLANCO_M', 'BLANCO_M', 30, 1, 'COMPLETADO', 1, '2018-07-25', 1, '2018-07-25', 1, '2018-07-25', 1, '2018-07-25', 1, '2018-07-25', 1, '2018-07-25', 1, '2018-07-25');
 
 -- --------------------------------------------------------
 
@@ -154,7 +157,8 @@ CREATE TABLE `terminado` (
 
 INSERT INTO `terminado` (`codterminado`, `ticketpro`, `tcalzado`, `modelo`, `color1`, `color2`, `pares`, `notas`, `fechacomp`, `cliente`) VALUES
 (1, 9000, 'DAMA', '905P', 'BLANCO', 'ROJO', 15, 1, '2018-07-19', NULL),
-(3, 100, 'DAMA', '905P', 'BLANCO_M', 'BLANCO_M', 15, 1, '2018-07-19', '');
+(3, 100, 'DAMA', '905P', 'BLANCO_M', 'BLANCO_M', 15, 1, '2018-07-19', ''),
+(4, 101, 'DAMA', '905P', 'BLANCO_M', 'BLANCO_M', 15, 1, '2018-07-22', '');
 
 -- --------------------------------------------------------
 
@@ -227,13 +231,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `produccion`
 --
 ALTER TABLE `produccion`
-  MODIFY `ticketpro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1002;
+  MODIFY `ticketpro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1005;
 
 --
 -- AUTO_INCREMENT de la tabla `terminado`
 --
 ALTER TABLE `terminado`
-  MODIFY `codterminado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `codterminado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

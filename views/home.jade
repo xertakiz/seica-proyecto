@@ -2,20 +2,20 @@ extends templates/default
 
 
 
-block content
 
-  h1='pagina de inicio'
-    if isAuthenticated
-      p= ('bienvenido ' + user.nombre) + (' ' + user.apellido)
+block content
+          
       
-      section(class="full-height text-center" id="main-content")
-        div(class="data")
-          div(class="col-md-3 center-block no-float top-space")
-            img(src="images/icecream.png" class="animated fadeIn")
-            h1(class="pacifico big green animated fadeIn delay-1")="Food Facilito"
-            div(class="animated fadeInDown delay-2")
-              h2="Ven, convive, diviértete"
-              nav
-                a(href="menu.html" class="right-space")="Menú"
-                a(href="contacto.html" class="right-space")="Contacto"
-                a(href="" class="right-space")="Acerca de"
+  div(class="panel panel-default")
+    div(class="panel-heading")="Panel Heading"
+      div(class="panel-body")="We are a fairly small, flexible design studio that designs for print and web. We work flexibly with clients to fulfil their design needs. Whether you need to create a brand from scratch, including marketing materials and a beautiful and functional website or whether you are looking for a design refresh we are confident you will be pleased with the results."
+
+      a.btn.btn-success Success
+      a.btn.btn-primary( href="link.htm" ) Primary
+      a.btn.btn-success Success
+ 
+      a.btn.btn-info Info
+      
+      a.btn.btn-warning Warning
+      
+      a.btn.btn-danger Danger

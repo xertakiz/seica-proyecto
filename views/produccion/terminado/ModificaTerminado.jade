@@ -8,67 +8,59 @@ block content
   div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
     div(class=["eight", "wide", "column"])
       
-      h2(class=['ui', 'header', 'blue', "dividing"])= "Nuevo Terminado"
+      h2(class=['ui', 'header', 'blue', "dividing"])= "Modificar Producto Terminado"
       div(class=['ui','field'])
         a(class="btn btn-primary", href="http://localhost:3000/users/terminado" role="button")='Regresar'
         a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Menu Principal'
       br
-      //ul
-        each cliente in cliente
-          li= cliente.cliente
+
       br
       div(class='form-nuevaterminado')
-        form(class=['ui','form'] action='http://localhost:3000/users/terminado/crearterminado' method='post')
-          div(class=['ui','hidden','four','fields'])
+        form(class=['ui','form'] action='http://localhost:3000/users/terminado/editarTerminado' method='post')
+          div(class=['ui','four','fields'])
                 div(class=['ui','field'])
                   label(for='codterminado')='Codigo Terminado'
-                  input(type='text' name='codterminado' placeholder='Terminado' maxlength='4')
+                  input(type='text' name='codterminado' readonly="readonly" value=terminados[0].codterminado maxlength='4')
           div(class=['ui','four','fields'])
                 div(class=['ui','field'])
                   label(for='ticketpro')='Ticket'
-                  input(type='text' name='ticketpro' placeholder='Ticket' maxlength='4')
+                  input(type='text' name='ticketpro' readonly="readonly" value=terminados[0].ticketpro maxlength='4')
                 div(class=['ui','field'])
                   label(for='modelo')='Modelo'
                   select(name="modelo" onChange="MM_jumpMenu('parent',this,0)")
-                    option(value="")=''
+                    option(value=value=terminados[0].modelo)=value=terminados[0].modelo
                     option(value="905P")='905P'
                     option(value="906P")='906P'
                     option(value="908P")='908P'
                 div(class=['ui','field'])
                   label(for='tcalzado')='Tipo de Calzado'
                   select(name="tcalzado" onChange="MM_jumpMenu('parent',this,0)")
-                    option(value="" )=''
+                    option(value=value=terminados[0].tcalzado)=value=terminados[0].tcalzado
                     option(value="DAMA" )='Dama'
                     option(value="NIÑO")='Niño'
                     option(value="CABALLERO")='Caballero'
                 div(class=['ui','field'])
                   label(for='fechacomp')='Fecha de Completado'
-                  input(type='text' readonly="readonly" name='fechacomp' placeholder='Fecha de Completado' maxlength='30')
+                  input(type='text' readonly="readonly" value=terminados[0].fechacomp name='fechacomp' maxlength='30')
           div(class=['ui','three','fields'])
                 div(class=['ui','field'])
                   label(for='color1' data-inverted='' data-tooltip='Color Principal' data-position='top center')='Color 1'
-                  select(name="color1" onChange="MM_jumpMenu('parent',this,0)")
-                    option(value="" )=''
-                    each colores in color
-                      option(value=colores.color)=colores.color
+                  input(type='text' name='color1' readonly="readonly" value=terminados[0].color1 maxlength='20')
                 div(class=['ui','field'])
                   label(for='color2' data-inverted='' data-tooltip='Adornos' data-position='top center')='Color 2'
-                  select(name="color2" onChange="MM_jumpMenu('parent',this,0)")
-                    option(value="" )=''
-                    each colores in color
-                      option(value=colores.color)=colores.color
+                  input(type='text' name='color2' readonly="readonly" value=terminados[0].color2 maxlength='20')
           div(class=['ui','three','fields'])
                 div(class=['ui','field'])
                   label(for='pares')='Pares'
                   select(name="pares" onChange="MM_jumpMenu('parent',this,0)")
-                    option(value="")=''
+                    option(value=terminados[0].pares)=value=terminados[0].pares
                     option(value="15",par1)='15 Pares'
                     option(value="30")='30 Pares'
                     option(value="45")='45 Pares'
                 div(class=['ui','field'])
-                  label(for='notas' data-inverted='' data-tooltip='Grupo de Zapatos con Numeracion Estandar' data-position='top center')='Notas'
+                  label(for='notas')='Notas'
                   select(name="notas" onChange="MM_jumpMenu('parent',this,0)")
-                    option(value="" )=''
+                    option(value=value=terminados[0].notas)=value=terminados[0].notas
                     option(value="1")='1 Nota'
                     option(value="2")='2 Notas'
                     option(value="3")='3 Notas'
@@ -76,20 +68,12 @@ block content
                 div(class=['ui','field'])
                   label(for='cliente')='Cliente'
                   select(name="cliente" onChange="MM_jumpMenu('parent',this,0)")
-                    option(value="")=''
+                    option(value=value=terminados[0].cliente)=value=terminados[0].cliente
                     //each clientes in cliente
                       option(value=clientes.cliente)=clientes.cliente
           br
           br
-          button(class=['ui','button','submit','blue'])= 'Crear Producto Terminado' 
+          button(class=['ui','button','submit','blue'])= 'Modificar'
           div(class=['ui','message','error'])
-
-        br
-        br
-      if info != undefined
-        div(class=['ui','message','success'])
-          i(class=['close','icon'])
-          div(class=['header'])= 'Producto Terminado creado Correctamente'
-          p= info
 
     script(src='/javascripts/validacionTerminado.js')

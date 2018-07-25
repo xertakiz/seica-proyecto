@@ -1,11 +1,5 @@
 extends ../../templates/default
 
-style.
-    body {
-      background-color: blue;
-      font-size: 19px;
-      color: #464646;
-    }
 
 block content
   br
@@ -18,12 +12,17 @@ block content
         a(class="btn btn-primary" href="http://localhost:3000/users/prima" role="button")='Regresar'
         a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Menu Principal'
       br
-      form(class=['ui','form'] action='#' method='post') 
+      form(class=['ui','form'] action='http://localhost:3000/users/prima/planta' method='post') 
         div(class=['ui','for','fields'])
           div(class=['ui','field'])
-            input(type='text' name='codplanta' placeholder='Codigo a Buscar' maxlength='20')
+            input(type='text' name='ticket' placeholder='Codigo a Buscar' maxlength='20')
           div(class=['ui','field'])
             button(class=['ui','button','submit','blue'])='Buscar'
+      if info != undefined
+        div(class=['ui','message','success'])
+          i(class=['close','icon'])
+          div(class=['header'])= 'Error en Busqueda'
+          p= info
         
 
       

@@ -1,7 +1,5 @@
 extends ../templates/default
 
-
-
 block content
 
   br
@@ -9,61 +7,45 @@ block content
   div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
     div(class=["thirteen", "wide", "column"])
       
-      h2(class=['ui', 'header', 'blue', "dividing"])= "Status Produccion"
+      h2(class=['ui', 'header', 'blue', "dividing"])= "Buscar Produccion"
       div(class=['ui','field'])
         a(class="btn btn-primary", href="http://localhost:3000/users/produccion" role="button")='Regresar'
         a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Menu Principal'
       br
       br
-      div(class='form-modificastatus')
-        form(class=['ui','form'] action='http://localhost:3000/users/produccion/editarproduccion' method='post')
-          div(class=['ui','four','fields'])
+      div(class='form-status')
+        form(class=['ui','form'] action='#' method='post')
+          div(class=['ui','five','fields'])
                 div(class=['ui','field'])
                   label(for='ticketpro')='Ticket'
                   input(type='text' name='ticketpro' placeholder='Ticket' readonly="readonly" value=produccion[0].ticketpro maxlength='4')
                 div(class=['ui','field'])
-                  label(for='modelo')='Modelo'
-                  input(type='text' name='modelo' readonly="readonly" value=produccion[0].modelo)
+                    a(class=['ui button basic icon'] href='http://localhost:3000/users/produccion/modificarproduccion/'+produccion[0].ticketpro data-inverted=''
+                      data-tooltip='Modificar' data-position='top center')
+                        i(class=['edit icon'])
+                      a(class=['ui button basic icon'] href='http://localhost:3000/users/produccion/modificarstatus/'+produccion[0].ticketpro data-inverted=''
+                      data-tooltip='Visualizar y Actualizar Status' data-position='top center')
+                        i(class=['eye icon'])
+          div(class=['ui','two','fields'])
+                div(class=['ui','field'])
+                  label(for='modelo')='modelo'
+                  input(type='text' value=produccion[0].modelo readonly="readonly" name='modelo')
                 div(class=['ui','field'])
                   label(for='tcalzado')='Tipo de Calzado'
-                  input(type='text' name='tcalzado' readonly="readonly" value=produccion[0].tcalzado)
+                  input(type='text' readonly="readonly" value=produccion[0].tcalzado name='tcalzado')
                 div(class=['ui','field'])
-                  label(for='fechacrea')='Fecha de Creacion'
-                  input(type='text' readonly="readonly" value=produccion[0].fechacrea name='fechacrea' placeholder='Fecha de Creacion' maxlength='30')
-          div(class=['ui','three','fields'])
-                div(class=['ui','field'])
-                  label(for='color1' data-inverted='' data-tooltip='Color Principal' data-position='top center')='Color 1'
-                  input(type='text' name='color1'  readonly="readonly" value=produccion[0].color1)
-                div(class=['ui','field'])
-                  label(for='color2' data-inverted='' data-tooltip='dornos' data-position='top center')='Color 2'
-                  input(type='text' name='color2'  readonly="readonly" value=produccion[0].color2)
-
-          div(class=['ui','three','fields'])
-                div(class=['ui','field'])
-                  label(for='pares')='Pares'
-                  input(type='text' name='pares' readonly="readonly" value=produccion[0].pares)
-                div(class=['ui','field'])
-                  label(for='notas' data-inverted='' data-tooltip='Grupo de Zapatos con Numeracion Estandar' data-position='top center')='Notas'
-                  input(type='text' name='notas' readonly="readonly" value=produccion[0].notas)
-                div(class=['ui','field'])
-                  label(for='cliente')='Cliente'
-                  select(name="cliente" onChange="MM_jumpMenu('parent',this,0)")
-                    option(value="")=''
-                    //each cliente in nomcliente
-                      option(value=cliente.nomcliente)=cliente.nomcliente
+                  label(for='colores')='Color'
+                  input(type='text' value= produccion[0].color1 +' / '+produccion[0].color2 readonly="readonly"  name='colores')
 
           div(class=['ui','four','fields'])
             div(class=['ui','field'])
                 div(class=["ui", "left", "floated", "compact", "segment"])
                   div(class=["ui", "fitted", "toggle"])
                     label(for='cortada')='Cortada'
-                    select(name="cortada" onChange="MM_jumpMenu('parent',this,0)")
-                      if value=produccion[0].cortada == 1
-                        option(value=produccion[0].cortada)='Si'
-                        option(value='')=''
-                      else
-                        option(value='')=''
-                        option(value=1)='Si'
+                    if value=produccion[0].cortada == 1
+                      input(type='text' name='cortada' placeholder='Cortada' readonly="readonly" value="Si")
+                    else
+                      input(type='text' name='cortada' placeholder='Cortada' readonly="readonly" value="")
                   br
                   div(class=['ui','field'])
                     label(for='fechacortada')='Fecha Cortada'
@@ -71,18 +53,15 @@ block content
                       input(type='text' readonly="readonly" value=produccion[0].fechacort name='fechacortada')
                     else
                       input(type='text' readonly="readonly" value='' name='fechacortada' placeholder='Fecha Cortada')
-
+             
             div(class=['ui','field'])
                 div(class=["ui", "left", "floated", "compact", "segment"])
                   div(class=["ui", "fitted", "toggle"])
                     label(for='marcada')='Marcada'
-                    select(name="marcada" onChange="MM_jumpMenu('parent',this,0)")
-                      if value=produccion[0].marcada == 1
-                        option(value=produccion[0].marcada)='Si'
-                        option(value='')=''
-                      else
-                        option(value='')=''
-                        option(value=1)='Si'
+                    if value=produccion[0].marcada == 1
+                      input(type='text' name='marcada' placeholder='Marcada' readonly="readonly" value="Si")
+                    else
+                      input(type='text' name='marcada' placeholder='Marcada' readonly="readonly" value="")
                   br
                   div(class=['ui','field'])
                     label(for='fechamarcada')='Fecha Marcada'
@@ -95,13 +74,10 @@ block content
                 div(class=["ui", "left", "floated", "compact", "segment"])
                   div(class=["ui", "fitted", "toggle"])
                     label(for='costura')='Costura'
-                    select(name="costura" onChange="MM_jumpMenu('parent',this,0)")
-                      if value=produccion[0].costura == 1
-                        option(value=produccion[0].costura)='Si'
-                        option(value='')=''
-                      else
-                        option(value='')=''
-                        option(value=1)='Si'
+                    if value=produccion[0].costura == 1
+                      input(type='text' name='costura' placeholder='Costura' readonly="readonly" value="Si")
+                    else
+                      input(type='text' name='costura' placeholder='Costura' readonly="readonly" value="")
                   br
                   div(class=['ui','field'])
                     label(for='fechacostura')='Fecha Costura'
@@ -109,18 +85,15 @@ block content
                       input(type='text' readonly="readonly" value=produccion[0].fechacost name='fechacostura')
                     else
                       input(type='text' readonly="readonly" value='' name='fechacostura' placeholder='Fecha Costura')
-
+        
             div(class=['ui','field'])
                 div(class=["ui", "left", "floated", "compact", "segment"])
                   div(class=["ui", "fitted", "toggle"])
                     label(for='montura')='Montura'
-                    select(name="montura" onChange="MM_jumpMenu('parent',this,0)")
-                      if value=produccion[0].montura == 1
-                        option(value=produccion[0].montura)='Si'
-                        option(value='')=''
-                      else
-                        option(value='')=''
-                        option(value=1)='Si'
+                    if value=produccion[0].montura == 1
+                      input(type='text' name='montura' placeholder='Montura' readonly="readonly" value="Si")
+                    else
+                      input(type='text' name='montura' placeholder='Montura' readonly="readonly" value="")
                   br
                   div(class=['ui','field'])
                     label(for='fechamontura')='Fecha Montura'
@@ -128,22 +101,18 @@ block content
                       input(type='text' readonly="readonly" value=produccion[0].fechamon name='fechamontura')
                     else
                       input(type='text' readonly="readonly" value='' name='fechamontura' placeholder='Fecha Montura')
-
-          div(class=['ui','four','fields'])
+          div(class=['ui','for','fields'])
+            div(class=['ui','field'])
             div(class=['ui','field'])
                 div(class=["ui", "left", "floated", "compact", "segment"])
                   div(class=["ui", "fitted", "toggle"])
                     label(for='soleteada')='Soleteada'
-                    select(name="soleteada" onChange="MM_jumpMenu('parent',this,0)")
-                      if value=produccion[0].soleteada == 1
-                        option(value=produccion[0].soleteada)='Si'
-                        option(value='')=''
-                      else
-                        option(value='')=''
-                        option(value=1)='Si'
+                    if value=produccion[0].soleteada == 1
+                      input(type='text' name='soleteada' placeholder='Soleteada' readonly="readonly" value="Si")
+                    else
+                      input(type='text' name='soleteada' placeholder='Soleteada' readonly="readonly" value="")
                   br
-                  div(class=['ui','field'])
-                    label(for='fechasoleteada')='Fecha Soleteada'
+                  label(for='fechasoleteada')='Fecha Soleteada'
                     if value=produccion[0].fechasole != "0000-00-00"
                       input(type='text' readonly="readonly" value=produccion[0].fechasole name='fechasoleteada')
                     else
@@ -153,13 +122,10 @@ block content
                 div(class=["ui", "left", "floated", "compact", "segment"])
                   div(class=["ui", "fitted", "toggle"])
                     label(for='encajada')='Encajada'
-                    select(name="encajada" onChange="MM_jumpMenu('parent',this,0)")
-                      if value=produccion[0].encajada == 1
-                        option(value=produccion[0].encajada)='Si'
-                        option(value='')=''
-                      else
-                        option(value='')=''
-                        option(value=1)='Si'
+                    if value=produccion[0].encajada == 1
+                      input(type='text' name='encajada' placeholder='Encajada' readonly="readonly" value="Si")
+                    else
+                      input(type='text' name='encajada' placeholder='Encajada' readonly="readonly" value="")
                   br
                   div(class=['ui','field'])
                     label(for='fechaencajada')='Fecha Encajada'
@@ -172,13 +138,10 @@ block content
               div(class=["ui", "left", "floated", "compact", "segment"])
                 div(class=["ui", "fitted", "toggle"])
                     label(for='completado')='Completado'
-                    select(name="completado" onChange="MM_jumpMenu('parent',this,0)")
-                      if value=produccion[0].completado == 1
-                        option(value=produccion[0].completado)='Si'
-                        option(value='')=''
-                      else
-                        option(value='')=''
-                        option(value=1)='Si'
+                    if value=produccion[0].completado == 1
+                      input(type='text' name='completado' placeholder='Completado' readonly="readonly" value="Si")
+                    else
+                      input(type='text' name='completado' placeholder='Completado' readonly="readonly" value="")
                 br
                 div(class=['ui','field'])
                   label(for='fechacomp')='Fecha Completado'
@@ -186,10 +149,3 @@ block content
                       input(type='text' readonly="readonly" value=produccion[0].fechacomp name='fecha Completado')
                     else
                       input(type='text' readonly="readonly" value='' name='fechacomp' placeholder='Fecha Completado')
-          
-          button(class=['ui','button','submit','blue'])= 'Modificar' 
-          div(class=['ui','message','error'])
-
-    script(src='/javascripts/validacionProduccion.js')
-          
-

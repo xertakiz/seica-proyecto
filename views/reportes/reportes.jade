@@ -1,0 +1,38 @@
+extends ../templates/default
+
+
+block content
+  br
+  div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
+    div(class=["fifteen", "wide", "column"])
+      
+      h2(class=['ui', 'header', 'blue', "dividing"])= "Reportes"
+      div(class=['ui','field'])
+        a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Regresar'
+      br
+      div(class='form-reportes')
+        form(class=['ui','form'])
+          div(class=['ui','for','fields'] )
+            div(class=['ui','field'])
+              a(class="btn btn-primary btn-lg" href="http://localhost:3000/users/reportes/reportesdia" role="button")='Reportes Diarios'
+            div(class=['ui','field'])
+              a(class="btn btn-primary btn-lg" href="http://localhost:3000/users/reportes/reportesfecha" role="button")='Planta'
+
+
+        h3(class=['ui', 'header', 'blue'])= "Reportes Diarios"
+        div(class="twelve wide stretched column")
+          div(class=["ui", 'blue', "segment"] font face="Comic Sans MS,arial,verdana")
+            p="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima quam officiis veritatis" 
+            p="ipsum consectetur, omnis, vero vel natus similique nemo ullam quia aperiam! Alias itaque illo enim blanditiis voluptas dolorum. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima quam officiis veritatis, ipsum consectetur, omnis, vero vel natus similique nemo ullam quia aperiam! Alias itaque illo enim blanditiis voluptas dolorum. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima quam officiis veritatis, ipsum consectetur, omnis, vero vel natus similique nemo ullam quia aperiam! Alias itaque illo enim blanditiis voluptas dolorum. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima quam officiis veritatis, ipsum consectetur, omnis, vero vel natus similique nemo ullam quia aperiam! Alias itaque illo enim blanditiis voluptas dolorum."
+        br
+        h3(class=['ui', 'header', 'blue'])= "Reportes Semanales"
+        div(class="twelve wide stretched column")
+          div(class=["ui", "segment", "blue"])
+            p="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima quam officiis veritatis, ipsum consectetur, omnis, vero vel natus similique nemo ullam quia aperiam! Alias itaque illo enim blanditiis voluptas dolorum. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima quam officiis veritatis, ipsum consectetur, omnis, vero vel natus similique nemo ullam quia aperiam! Alias itaque illo enim blanditiis voluptas dolorum. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima quam officiis veritatis, ipsum consectetur, omnis, vero vel natus similique nemo ullam quia aperiam! Alias itaque illo enim blanditiis voluptas dolorum. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima quam officiis veritatis, ipsum consectetur, omnis, vero vel natus similique nemo ullam quia aperiam! Alias itaque illo enim blanditiis voluptas dolorum."
+        
+        h3(class=['ui', 'header', 'blue'])= "Reportes Mensuales"
+        div(class="twelve wide stretched column")
+          div(class=["ui", "segment", 'blue'])
+            p="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima quam officiis veritatis, ipsum consectetur, omnis, vero vel natus similique nemo ullam quia aperiam! Alias itaque illo enim blanditiis voluptas dolorum. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima quam officiis veritatis, ipsum consectetur, omnis, vero vel natus similique nemo ullam quia aperiam! Alias itaque illo enim blanditiis voluptas dolorum. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima quam officiis veritatis, ipsum consectetur, omnis, vero vel natus similique nemo ullam quia aperiam! Alias itaque illo enim blanditiis voluptas dolorum. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima quam officiis veritatis, ipsum consectetur, omnis, vero vel natus similique nemo ullam quia aperiam! Alias itaque illo enim blanditiis voluptas dolorum."
+
+

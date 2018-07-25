@@ -23,7 +23,7 @@ block content
                 div(class=['ui','field'])
                   label(for='modelo')='Modelo'
                   select(name="modelo"  onChange="MM_jumpMenu('parent',this,0)")
-                    option(value=value=produccion[0].modelo)=value=produccion[0].modelo
+                    option(value=produccion[0].modelo)=value=produccion[0].modelo
                     option(value="905P")='905P'
                     option(value="906P")='906P'
                     option(value="908P")='908P'
@@ -48,7 +48,7 @@ block content
                 div(class=['ui','field'])
                   label(for='pares')='Pares'
                   select(name="pares" onChange="MM_jumpMenu('parent',this,0)")
-                    option(value="")=''
+                    option(value=value=produccion[0].pares)=produccion[0].pares
                     option(value="15",par1)='15 Pares'
                     option(value="30")='30 Pares'
                     option(value="45")='45 Pares'
@@ -56,7 +56,7 @@ block content
                 div(class=['ui','field'])
                   label(for='notas' data-inverted='' data-tooltip='Grupo de Zapatos con Numeracion Estandar' data-position='top center')='Notas'
                   select(name="notas" onChange="MM_jumpMenu('parent',this,0)")
-                    option(value="" )=''
+                    option(value=produccion[0].notas)=produccion[0].pares
                     option(value="1")='1 Nota'
                     option(value="2")='2 Notas'
                     option(value="3")='3 Notas'
@@ -64,9 +64,9 @@ block content
                 div(class=['ui','field'])
                   label(for='cliente')='Cliente'
                   select(name="cliente" onChange="MM_jumpMenu('parent',this,0)")
-                    option(value="")=''
-                    //each cliente in nomcliente
-                      option(value=cliente.nomcliente)=cliente.nomcliente
+                    option(value=value=produccion[0].cliente)=value=produccion[0].cliente
+                    //each clientes in cliente
+                      option(value=clientes.cliente)=clientes.cliente
 
           div(class=['ui', 'hidden','four','fields'])
             div(class=['ui','field'])
@@ -206,5 +206,5 @@ block content
           button(class=['ui','button','submit','blue'])= 'Modificar' 
           div(class=['ui','message','error'])
           
-
+    script(src='/javascripts/validacionProduccion.js')
 

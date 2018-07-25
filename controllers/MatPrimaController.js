@@ -1,5 +1,15 @@
 var mysql = require('mysql');
 
+var config = require('.././database/config');
+var db = mysql.createConnection(config);
+db.connect();
+var prim = null;
+db.query('SELECT * FROM matprima', function(err,rows, fields){
+    if(err) throw err;
+    prim = rows
+    db.end();
+});
+
 
 
 //material materia prima
@@ -26,6 +36,30 @@ module.exports ={
             res.render('produccion/prima/Material',{prima : prima, isAuthenticated : req.isAuthenticated(),
                 user : req.user})
         });
+    },
+    postBuscarMaterial: function (req,res, ticket){
+
+        var codigo = req.body.ticket;
+        var config = require('.././database/config');
+
+        var db = mysql.createConnection(config);
+        db.connect();
+        var prima = null;
+        db.query('SELECT * FROM matprima WHERE codmaterial = ?', codigo, function (err, rows, fields) {
+            if (err) throw err;
+            prima = rows;
+            db.end();
+
+            if (prima.length > 0) {
+                res.render('produccion/prima/BuscarMaterial', {prima: prima, isAuthenticated : req.isAuthenticated(),
+                    user : req.user});
+
+            }
+            else {
+                res.render('produccion/prima/Material',{info:'Codigo no Encontrado',prima: prim, isAuthenticated : req.isAuthenticated(),
+                user : req.user})
+            }
+        }); 
     },
 
     getNuevoMaterial: function(req,res,next){
@@ -105,95 +139,4 @@ module.exports ={
         });
         res.redirect('/users/prima/material');
     },
-    getPlanta : function(req, res, next){
-        var config = require('.././database/config');
-
-        var db = mysql.createConnection(config);
-        db.connect();
-
-        var planta = null;
-        db.query('SELECT * FROM matplanta', function(err,rows, fields){
-            if(err) throw err;
-
-            planta = rows
-            db.end();
-
-            res.render('produccion/prima/Planta',{planta : planta, isAuthenticated : req.isAuthenticated(),
-                user : req.user})
-        });
-    },
-    getNuevoPlanta: function(req,res,next){
-        res.render('produccion/prima/NuevoPlanta',{isAuthenticated : req.isAuthenticated(),
-        user : req.user});
-    },
-    postNuevoPlanta: function(req,res,next){
-        
-        var planta = {
-            codplanta : req.body.codplanta,
-            nomplanta : req.body.nomplanta,
-            existencia : req.body.existencia,
-            descripcion : req.body.descripcion
-        }
-        var config = require('.././database/config');
-
-        var db = mysql.createConnection(config);
-        db.connect();
-        
-        db.query('INSERT INTO matplanta SET?', planta, function(err,rows,fields){
-            if(err) throw err;
-        });
-        res.render('produccion/prima/NuevoPlanta', {info : 'Producto creado correctamente', isAuthenticated : req.isAuthenticated(),
-            user : req.user});
-    },
-    EliminarPlanta : function(req, res, next){			
-        var codplanta = req.body.codplanta;
-        var config =require('.././database/config');;
-        var db=mysql.createConnection(config);
-        db.connect();
-
-        var respuesta={res:false};
-        db.query('DELETE FROM matplanta WHERE codplanta = ?',codplanta, function(err,rows,fields){
-            if(err)throw err; 
-            db.end();
-            respuesta.res=true;
-            res.json(respuesta);
-         });
-    },
-    getModificarPlanta : function(req,res,next){
-        var codplanta = req.params.codplanta
-        var config =require('.././database/config');;
-        var db=mysql.createConnection(config);
-        db.connect();
-
-        var planta = null;
-        db.query('SELECT * FROM matplanta WHERE codplanta = ?',codplanta, function(err,rows,fields){
-            if(err)throw err;
-            planta = rows;
-            db.end();
-
-            res.render('produccion/prima/ModificaPlanta', {planta: planta, isAuthenticated : req.isAuthenticated(),
-                user : req.user});
-        });
-    },
-
-    postModificarPlanta :function(req,res,next){
-        var planta = {
-            nomplanta : req.body.nomplanta,
-            existencia : req.body.existencia,
-            descripcion : req.body.descripcion
-        };
-
-        var config =require('.././database/config');;
-        var db=mysql.createConnection(config);
-        db.connect();
-        
-        db.query('UPDATE matplanta SET ? WHERE?', [planta,{codplanta : req.body.codplanta}], function(err,rows,fields){
-            if(err)throw err;
-            planta = rows;
-            db.end();
-
-        });
-        res.redirect('/users/prima/planta');
-    },
-    
 }

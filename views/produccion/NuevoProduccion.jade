@@ -2,7 +2,6 @@ extends ../templates/default
 
 
 block content
-  
   br
   br
   div(class=["ui", "container", "grid", "stackable", "animated fadeIn"])
@@ -12,10 +11,6 @@ block content
       div(class=['ui','field'])
         a(class="btn btn-primary", href="http://localhost:3000/users/produccion" role="button")='Regresar'
         a(class="btn btn-primary" href="http://localhost:3000/users/panel" role="button")='Menu Principal'
-      br
-      //ul
-        each cliente in nomcliente
-          li= cliente.nomcliente
       br
       div(class='form-nuevaproduccion')
         form(class=['ui','form'] action='http://localhost:3000/users/produccion/crearproduccion' method='post')
@@ -76,8 +71,8 @@ block content
                   label(for='cliente')='Cliente'
                   select(name="cliente" onChange="MM_jumpMenu('parent',this,0)")
                     option(value="")=''
-                    //each cliente in nomcliente
-                      option(value=cliente.nomcliente)=cliente.nomcliente
+                    //each clientes in cliente
+                      option(value=clientes.cliente)=clientes.cliente
 
 
           h3(class=['ui', 'header', 'blue', "dividing"])= "Status Produccion"
